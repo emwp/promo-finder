@@ -5,18 +5,36 @@ const { buildSchema } = require('graphql');
 
 const app = express();
 
+const promos = [];
+
 app.use(bodyParser.json());
 
 app.use(
   '/graphql',
   graphqlHttp({
     schema: buildSchema(`
+
+    type Promo {
+      _id: ID!
+      title: String!
+      description: String!
+      price: Float!
+      date: String!
+    }
+
+    input PromoInput {
+      title: String!
+      description: String!
+      price: Float!
+      date: String!
+    }
+
     type RootQuery {
-      promo: [String!]!
+      promos: [Promo!]!
     }
 
     type RootMutation {
-      createPromo(name: String): String
+      createPromo(promoInput: PromoInput): Promo
     }
 
     schema {
@@ -25,12 +43,19 @@ app.use(
     }
   `),
     rootValue: {
-      promo: () => {
-        return ['TV 42 Pol', 'Notebook', 'Smartphone Samsung S9+'];
+      promos: () => {
+        return promos;
       },
       createPromo: arg => {
-        const promoName = arg.name;
-        return promoName;
+        const promo = {
+          _id: Math.random().toString(),
+          title: arg.promoInput.title,
+          description: arg.promoInput.description,
+          price: +arg.promoInput.price,
+          date: arg.promoInput.date,
+        };
+        promos.push(promo);
+        return promo;
       },
     },
     graphiql: true,
