@@ -33,6 +33,7 @@ app.use(
         return promoName;
       },
     },
+    graphiql: true,
   }),
 );
 
