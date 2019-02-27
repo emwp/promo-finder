@@ -4,9 +4,9 @@ const graphqlHttp = require('express-graphql');
 const { buildSchema } = require('graphql');
 const mongoose = require('mongoose');
 
-const app = express();
+const Promo = require('./models/promo');
 
-const promos = [];
+const app = express();
 
 app.use(bodyParser.json());
 
@@ -45,18 +45,33 @@ app.use(
   `),
     rootValue: {
       promos: () => {
-        return promos;
+        return Promo.find()
+          .then(promos => {
+            return promos.map(promo => {
+              return { ...promo._doc, _id: promo._doc._id.toString() };
+            });
+          })
+          .catch(err => {
+            throw err;
+          });
       },
       createPromo: arg => {
-        const promo = {
-          _id: Math.random().toString(),
+        const promo = new Promo({
           title: arg.promoInput.title,
           description: arg.promoInput.description,
           price: +arg.promoInput.price,
-          date: arg.promoInput.date,
-        };
-        promos.push(promo);
-        return promo;
+          date: new Date(arg.promoInput.date),
+        });
+        return promo
+          .save()
+          .then(res => {
+            console.log(res);
+            return { ...res._doc, _id: res._doc._id.toString() };
+          })
+          .catch(err => {
+            console.log(err);
+            throw err;
+          });
       },
     },
     graphiql: true,
@@ -67,7 +82,7 @@ mongoose
   .connect(
     `mongodb+srv://${process.env.MONGO_USER}:${
       process.env.MONGO_PASSWORD
-    }@cluster0-j9chw.mongodb.net/test?retryWrites=true`,
+    }@cluster0-j9chw.mongodb.net/${process.env.MONGO_DB}?retryWrites=true`,
   )
   .then(() => {
     app.listen(3000);
