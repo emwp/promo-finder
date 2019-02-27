@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 const User = require('../../models/user');
+const jwt = require('jsonwebtoken');
 
 module.exports = {
   // Graphql mutation to create new users
@@ -21,5 +22,19 @@ module.exports = {
     } catch (err) {
       throw err;
     }
+  },
+  login: async ({ email, password }) => {
+    const user = User.findOne({ email: email });
+    if (!user) {
+      throw new Error('User does not exist!');
+    }
+    const passMatch = await bcrypt.compare(password, user.password);
+    if (!passMatch) {
+      throw new Error('Password is incorrect');
+    }
+    const token = await jwt.sign({ userId: user.id, email: user.email }, 'secretkeyfortesting', {
+      expiresIn: '1h',
+    });
+    return { userId: user.id, token: token, tokenExpiration: 1 };
   },
 };
