@@ -18,6 +18,12 @@ type User {
   createdPromos: [Promo!]
 }
 
+type AuthData {
+  userId: ID!
+  token: String!
+  tokenExpiration: Int!
+}
+
 input UserInput {
   email: String!
   password: String!
@@ -32,6 +38,7 @@ input PromoInput {
 
 type RootQuery {
   promos: [Promo!]!
+  login(email: String!, password: String!): AuthData!
 }
 
 type RootMutation {
