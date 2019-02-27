@@ -9,7 +9,7 @@ const userSchema = new Schema({
     required: true,
   },
   password: {
-    type: string,
+    type: String,
     required: true,
   },
   // Allows to related users with created promos
