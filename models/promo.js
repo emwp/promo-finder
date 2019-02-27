@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-// Define new schema constructor to map mongoDB collection and define the shape of the documents within the collection
+// Define the promos schema constructor to map mongoDB collection and define the shape of the documents within the collection
 const promoSchema = new Schema({
   title: {
     type: String,
@@ -19,6 +19,11 @@ const promoSchema = new Schema({
   date: {
     type: Date,
     required: true,
+  },
+  creator: {
+    type: Schema.Types.ObjectId,
+    // Ref pointing to the User model
+    ref: 'User',
   },
 });
 
