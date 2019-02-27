@@ -1,5 +1,6 @@
 const { buildSchema } = require('graphql');
 
+// Schema of how the graphql data should look like (Types, Inputs, Queries and Mutations)
 module.exports = buildSchema(`
 type Promo {
   _id: ID!
