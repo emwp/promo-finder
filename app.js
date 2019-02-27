@@ -3,13 +3,14 @@ const bodyParser = require('body-parser');
 const graphqlHttp = require('express-graphql');
 const { buildSchema } = require('graphql');
 const mongoose = require('mongoose');
-
 const Promo = require('./models/promo');
-
 const app = express();
 
+// uses the body-parser to parse any incoming HTTP request bodies
 app.use(bodyParser.json());
 
+// Defining the graphql query & mutation schemas
+// Type of the expected data
 app.use(
   '/graphql',
   graphqlHttp({
@@ -78,6 +79,7 @@ app.use(
   }),
 );
 
+// Connecting to mongoDB with mongoose
 mongoose
   .connect(
     `mongodb+srv://${process.env.MONGO_USER}:${
