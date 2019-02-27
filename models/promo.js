@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+// Define new schema constructor to map mongoDB collection and define the shape of the documents within the collection
 const promoSchema = new Schema({
   title: {
     type: String,
