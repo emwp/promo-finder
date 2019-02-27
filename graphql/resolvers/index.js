@@ -6,7 +6,7 @@ const User = require('../../models/user');
 const promos = async promoIds => {
   try {
     const promos = await Promo.find({ _id: { $in: promoIds } });
-    promos.map(promo => {
+    return promos.map(promo => {
       return {
         ...promo._doc,
         _id: promo.id,
@@ -14,7 +14,6 @@ const promos = async promoIds => {
         creator: user.bind(this, promo.creator),
       };
     });
-    return promos;
   } catch (err) {
     throw err;
   }
