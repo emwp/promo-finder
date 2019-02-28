@@ -15,20 +15,23 @@ module.exports = {
     }
   },
   // Graphql mutation to create new promos in mongoDB
-  createPromo: async arg => {
+  createPromo: async (arg, req) => {
+    if (!req.isAuth) {
+      throw new Error('Unauthenticated!');
+    }
     const promo = new Promo({
       title: arg.promoInput.title,
       description: arg.promoInput.description,
       price: +arg.promoInput.price,
       date: new Date(arg.promoInput.date),
-      creator: '5c7716b85354473872c92531',
+      creator: req.userId,
     });
 
     let createdPromo;
     try {
       const res = await promo.save();
       createdPromo = transformPromo(res);
-      const creator = await User.findById('5c7716b85354473872c92531');
+      const creator = await User.findById(req.userId);
 
       if (!creator) {
         throw new Error('User not found');
