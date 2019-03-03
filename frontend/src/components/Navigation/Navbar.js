@@ -6,6 +6,7 @@ import Logo from '../../img/logo.png';
 const Navbar = () => {
   return (
     <NavWrapper>
+      <div className="nav_toggle">Menu</div>
       <div className="nav_logo">
         <img src={Logo} alt="logo" />
       </div>
@@ -29,8 +30,22 @@ const NavWrapper = styled.nav`
   align-items: center;
   justify-content: space-around;
 
-  .nav_logo h1 {
-    margin: 0;
-    font-size: 1.5rem;
+  .nav_toggle {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .nav_toggle {
+      display: flex;
+      cursor: pointer;
+    }
+    .nav_logo {
+      justify-content: space-between;
+    }
+
+    .nav_logo h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
   }
 `;

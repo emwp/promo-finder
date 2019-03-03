@@ -30,6 +30,10 @@ const NavLinksWrapper = styled.ul`
   padding: 0;
   list-style: none;
 
+  @media (max-width: 768px) {
+    display: none;
+  }
+
   .nav-link {
     margin: 0 1rem;
     color: #e78200;
