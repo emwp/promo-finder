@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import NavbarLinks from './NavbarLinks';
-// import NavbarIcons from './NavbarIcons';
+import Logo from '../../img/logo.png';
 
 const Navbar = () => {
   return (
     <NavWrapper>
       <div className="nav_logo">
-        <h1>PromoFinder</h1>
+        <img src={Logo} alt="logo" />
       </div>
       <NavbarLinks />
     </NavWrapper>
@@ -25,7 +25,7 @@ const NavWrapper = styled.nav`
   width: 100%;
   display: flex;
   height: 3.5rem;
-  background: red;
+  color: #3d3f42;
   align-items: center;
   justify-content: space-around;
 
