@@ -1,11 +1,8 @@
 import React from 'react';
+import Login from './Login';
 
 const Auth = () => {
-  return (
-    <div>
-      <h1>Hello from the Auth Page!</h1>
-    </div>
-  );
+  return <Login />;
 };
 
 export default Auth;

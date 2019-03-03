@@ -6,7 +6,6 @@ import Logo from '../../img/logo.png';
 const Navbar = () => {
   return (
     <NavWrapper>
-      <div className="nav_toggle">Menu</div>
       <div className="nav_logo">
         <img src={Logo} alt="logo" />
       </div>
