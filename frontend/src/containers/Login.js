@@ -53,4 +53,10 @@ const FormWrapper = styled.form`
     width: 100%;
     align-items: center;
   }
+
+  button:hover,
+  button:active {
+    color: white;
+    background: #e78200;
+  }
 `;
