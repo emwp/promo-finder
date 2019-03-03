@@ -5,6 +5,7 @@ import Promos from './containers/Promos';
 import CreatePromo from './containers/CreatePromo';
 import Navbar from './components/Navigation/Navbar';
 import './App.css';
+import Login from '../src/containers/Login';
 
 class App extends Component {
   render() {
@@ -14,10 +15,11 @@ class App extends Component {
           <Navbar />
           <main className="main-content">
             <Switch>
-              <Redirect from="/" to="/auth" exact />
-              <Route path="/auth" component={Auth} />
-              <Route path="/promos" component={Promos} />
-              <Route path="/new-promo" component={CreatePromo} />
+              {/* <Redirect from="/" to="/auth" exact /> */}
+              <Route exact path="/" component={Login} />
+              <Route exact path="/auth" component={Auth} />
+              <Route exact path="/promos" component={Promos} />
+              <Route exact path="/new-promo" component={CreatePromo} />
             </Switch>
           </main>
         </React.Fragment>

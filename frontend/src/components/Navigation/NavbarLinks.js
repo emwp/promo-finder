@@ -6,17 +6,17 @@ const NavbarLinks = () => {
   return (
     <NavLinksWrapper>
       <li>
-        <NavLink to="/" className="nav-link">
+        <NavLink to="/" exact className="nav-link">
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink to="/new-promo" className="nav-link">
+        <NavLink to="/new-promo" exact className="nav-link">
           New Promo
         </NavLink>
       </li>
       <li>
-        <NavLink to="/auth" className="nav-link">
+        <NavLink to="/auth" exact className="nav-link">
           Authenticate
         </NavLink>
       </li>
