@@ -61,5 +61,6 @@ const FormWrapper = styled.form`
   button:active {
     color: white;
     background: #fe6756;
+    transition: 0.3s;
   }
 `;

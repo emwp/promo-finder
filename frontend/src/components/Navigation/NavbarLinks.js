@@ -63,6 +63,7 @@ const NavLinksWrapper = styled.ul`
     background: #fe6756;
     color: white;
     transform: scale(1.1);
+    transition: 0.3s;
   }
 `;
 

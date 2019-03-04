@@ -88,5 +88,6 @@ const FormWrapper = styled.form`
   .register-btn a:active {
     color: white;
     background: #fe6756;
+    transition: 0.3s;
   }
 `;
