@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
   return (
@@ -15,7 +16,9 @@ const Login = () => {
       </div>
       <div>
         <button type="submit">Sign In</button>
-        <button type="submit">Register</button>
+        <div className="register-btn">
+          <Link to="/register">Register</Link>
+        </div>
       </div>
     </FormWrapper>
   );
@@ -37,6 +40,23 @@ const FormWrapper = styled.form`
     margin-bottom: 1rem;
     text-align: center;
     color: #fe6756;
+  }
+  .register-btn a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #fe6756;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    color: #fe6756;
+    background: white;
+    margin-top: 0.5rem;
+    padding: 4px 0;
+    cursor: pointer;
+    width: 100%;
+    align-items: center;
+    font-family: inherit;
   }
   .form-item input {
     font-size: 1rem;
@@ -63,7 +83,9 @@ const FormWrapper = styled.form`
   }
 
   button:hover,
-  button:active {
+  button:active,
+  .register-btn a:hover,
+  .register-btn a:active {
     color: white;
     background: #fe6756;
   }
