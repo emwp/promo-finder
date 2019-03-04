@@ -19,6 +19,7 @@ export default Navbar;
 // CSS
 
 const NavWrapper = styled.nav`
+  background: #f4f5f7;
   position: fixed;
   left: 0;
   top: 0;

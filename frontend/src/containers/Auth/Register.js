@@ -5,18 +5,15 @@ const Login = () => {
   return (
     <FormWrapper>
       <div>
-        <h1>Login</h1>
+        <h1>Register</h1>
       </div>
       <div className="form-item">
-        <label htmlFor="email">Email</label>
-        <input type="email" />
+        <input type="email" placeholder="Email" />
       </div>
       <div className="form-item">
-        <label htmlFor="password">Password</label>
-        <input type="password" />
+        <input type="password" placeholder="Password" />
       </div>
       <div>
-        <button type="submit">Sign In</button>
         <button type="submit">Register</button>
       </div>
     </FormWrapper>
@@ -26,7 +23,8 @@ const Login = () => {
 export default Login;
 
 const FormWrapper = styled.form`
-  border: 2px solid #e78200;
+  background: white;
+  border-radius: 5px;
   padding: 2rem 2rem;
   width: 40rem;
   max-width: 80%;
@@ -37,15 +35,20 @@ const FormWrapper = styled.form`
     margin-top: 0;
     margin-bottom: 1rem;
     text-align: center;
-    color: #e78200;
+    color: #fe6756;
   }
   .form-item input {
     width: 100%;
     margin: 0.4rem 0px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    padding: 10px 10px;
   }
   button {
-    border: 2px solid #e78200;
-    color: #e78200;
+    border: 2px solid #fe6756;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #fe6756;
     background: white;
     margin-top: 0.5rem;
     padding: 4px 0;
@@ -57,6 +60,6 @@ const FormWrapper = styled.form`
   button:hover,
   button:active {
     color: white;
-    background: #e78200;
+    background: #fe6756;
   }
 `;

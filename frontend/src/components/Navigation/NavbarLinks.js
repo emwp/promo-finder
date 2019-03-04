@@ -16,8 +16,13 @@ const NavbarLinks = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/auth" exact className="nav-link">
-          Authenticate
+        <NavLink to="/login" exact className="nav-link">
+          Login
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to="/register" exact className="nav-link">
+          Register
         </NavLink>
       </li>
     </NavLinksWrapper>
@@ -36,10 +41,10 @@ const NavLinksWrapper = styled.ul`
 
   .nav-link {
     margin: 0 1rem;
-    color: #e78200;
+    color: #fe6756;
     background: white;
     text-decoration: none;
-    border: 2px solid #e78200;
+    border: 2px solid #fe6756;
     padding: 5px 10px;
     border-radius: 5px;
     display: inline-block;
@@ -55,7 +60,7 @@ const NavLinksWrapper = styled.ul`
   .hvr-grow:focus,
   .nav-link:active,
   .nav-link.active {
-    background: #e78200;
+    background: #fe6756;
     color: white;
     transform: scale(1.1);
   }
