@@ -39,11 +39,13 @@ const FormWrapper = styled.form`
     color: #fe6756;
   }
   .form-item input {
+    font-size: 1rem;
     width: 100%;
     margin: 0.4rem 0px;
     box-sizing: border-box;
     border-radius: 3px;
     padding: 10px 10px;
+    font-family: inherit;
   }
 
   button {
@@ -57,6 +59,7 @@ const FormWrapper = styled.form`
     cursor: pointer;
     width: 100%;
     align-items: center;
+    font-family: inherit;
   }
 
   button:hover,
