@@ -1,17 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const Login = () => {
+const Register = () => {
+  let [email, setEmail] = useState('');
+  let [password, setPassword] = useState('');
+
+  const emailChangeHandler = event => {
+    setEmail((email = event.target.value));
+  };
+  const passChangeHandler = event => {
+    setPassword((password = event.target.value));
+  };
+
   return (
     <FormWrapper>
       <div>
         <h1>Register</h1>
       </div>
       <div className="form-item">
-        <input type="email" placeholder="Email" />
+        <input
+          type="email"
+          placeholder="Email"
+          name="email"
+          value={email}
+          onChange={emailChangeHandler}
+        />
       </div>
       <div className="form-item">
-        <input type="password" placeholder="Password" />
+        <input
+          type="password"
+          value={password}
+          name="password"
+          onChange={passChangeHandler}
+          placeholder="Password"
+        />
       </div>
       <div>
         <button type="submit">Register</button>
@@ -20,7 +42,7 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register;
 
 const FormWrapper = styled.form`
   background: white;

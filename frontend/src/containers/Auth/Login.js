@@ -1,18 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
+  let [email, setEmail] = useState('');
+  let [password, setPassword] = useState('');
+
+  const emailChangeHandler = event => {
+    setEmail((email = event.target.value));
+  };
+  const passChangeHandler = event => {
+    setPassword((password = event.target.value));
+  };
+
   return (
     <FormWrapper>
       <div>
         <h1>Login</h1>
       </div>
       <div className="form-item">
-        <input type="email" placeholder="Email" />
+        <input
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={email}
+          onChange={emailChangeHandler}
+        />
       </div>
       <div className="form-item">
-        <input type="password" placeholder="Password" />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={password}
+          onChange={passChangeHandler}
+        />
       </div>
       <div>
         <button type="submit">Sign In</button>
