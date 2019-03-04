@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const Register = () => {
   let [email, setEmail] = useState('');
@@ -12,8 +13,28 @@ const Register = () => {
     setPassword((password = event.target.value));
   };
 
+  const submitHandler = event => {
+    event.preventDefault();
+    if (email.trim().length === 0 || password.trim().length === 0) {
+      return;
+    }
+    axios
+      .post('http://localhost:8000/graphql', {
+        query: `
+        mutation {
+          createUser(userInput: {email: "${email}", password: "${password}"}) {
+            _id
+            email
+          }
+        }
+      `,
+      })
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+  };
+
   return (
-    <FormWrapper>
+    <FormWrapper onSubmit={submitHandler}>
       <div>
         <h1>Register</h1>
       </div>
