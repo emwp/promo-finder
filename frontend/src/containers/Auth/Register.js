@@ -1,19 +1,23 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import { observer } from 'mobx-react-lite';
+import { AuthStoreContext } from '../../stores/AuthStore';
 
-const Register = () => {
-  let [email, setEmail] = useState('');
-  let [password, setPassword] = useState('');
+const Register = observer(() => {
+  const authStore = useContext(AuthStoreContext);
 
   const emailChangeHandler = event => {
-    setEmail((email = event.target.value));
+    authStore.email = event.target.value;
+    // console.log(authStore.email);
   };
   const passChangeHandler = event => {
-    setPassword((password = event.target.value));
+    authStore.password = event.target.value;
+    // console.log(authStore.password);
   };
 
   const submitHandler = event => {
+    const { email, password } = authStore;
     event.preventDefault();
     if (email.trim().length === 0 || password.trim().length === 0) {
       return;
@@ -30,6 +34,11 @@ const Register = () => {
       `,
       })
       .then(res => console.log(res.data))
+      .then(() => {
+        authStore.email = '';
+        authStore.password = '';
+        console.log(authStore.email);
+      })
       .catch(err => console.log(err));
   };
 
@@ -43,8 +52,7 @@ const Register = () => {
           required
           type="email"
           placeholder="Email"
-          name="email"
-          value={email}
+          value={authStore.email}
           onChange={emailChangeHandler}
         />
       </div>
@@ -52,8 +60,7 @@ const Register = () => {
         <input
           required
           type="password"
-          value={password}
-          name="password"
+          value={authStore.password}
           onChange={passChangeHandler}
           placeholder="Password"
         />
@@ -63,7 +70,7 @@ const Register = () => {
       </div>
     </FormWrapper>
   );
-};
+});
 
 export default Register;
 

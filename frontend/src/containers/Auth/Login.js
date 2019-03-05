@@ -1,29 +1,30 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { observer } from 'mobx-react-lite';
+import { AuthStoreContext } from '../../stores/AuthStore';
 
-const Login = () => {
-  let [email, setEmail] = useState('');
-  let [password, setPassword] = useState('');
+const Login = observer(() => {
+  const authStore = useContext(AuthStoreContext);
 
   const emailChangeHandler = event => {
-    setEmail((email = event.target.value));
+    authStore.email = event.target.value;
   };
   const passChangeHandler = event => {
-    setPassword((password = event.target.value));
+    authStore.password = event.target.value;
   };
 
   const submitHandler = event => {
     event.preventDefault();
-    if (email.trim().length === 0 || password.trim().length === 0) {
+    if (authStore.email.trim().length === 0 || authStore.password.trim().length === 0) {
       return;
     }
     axios
       .post('http://localhost:8000/graphql', {
         query: `
         query {
-          login(email: "${email}", password: "${password}") {
+          login(email: "${authStore.email}", password: "${authStore.password}") {
             userId
             token
             tokenExpiration
@@ -32,6 +33,10 @@ const Login = () => {
       `,
       })
       .then(res => console.log(res.data))
+      .then(() => {
+        authStore.email = '';
+        authStore.password = '';
+      })
       .catch(err => console.log(err));
   };
 
@@ -43,18 +48,16 @@ const Login = () => {
       <div className="form-item">
         <input
           type="email"
-          name="email"
           placeholder="Email"
-          value={email}
+          value={authStore.email}
           onChange={emailChangeHandler}
         />
       </div>
       <div className="form-item">
         <input
           type="password"
-          name="password"
           placeholder="Password"
-          value={password}
+          value={authStore.password}
           onChange={passChangeHandler}
         />
       </div>
@@ -66,7 +69,7 @@ const Login = () => {
       </div>
     </FormWrapper>
   );
-};
+});
 
 export default Login;
 
