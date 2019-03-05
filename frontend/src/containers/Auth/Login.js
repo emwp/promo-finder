@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-// import axios from 'axios';
+import axios from 'axios';
 
 const Login = () => {
   let [email, setEmail] = useState('');
@@ -14,8 +14,29 @@ const Login = () => {
     setPassword((password = event.target.value));
   };
 
+  const submitHandler = event => {
+    event.preventDefault();
+    if (email.trim().length === 0 || password.trim().length === 0) {
+      return;
+    }
+    axios
+      .post('http://localhost:8000/graphql', {
+        query: `
+        query {
+          login(email: "${email}", password: "${password}") {
+            userId
+            token
+            tokenExpiration
+          }
+        }
+      `,
+      })
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
+  };
+
   return (
-    <FormWrapper>
+    <FormWrapper onSubmit={submitHandler}>
       <div>
         <h1>Login</h1>
       </div>
