@@ -1,57 +1,59 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter, Link } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import { AuthStoreContext } from '../../stores/AuthStore';
 
-const NavbarLinks = observer(() => {
-  const authStore = useContext(AuthStoreContext);
+const NavbarLinks = withRouter(
+  observer(() => {
+    const authStore = useContext(AuthStoreContext);
 
-  const setLogout = () => {
-    authStore.isAuth = false;
-    authStore.userId = '';
-    authStore.token = '';
-    authStore.tokenExpiration = '';
-    authStore.email = '';
-    authStore.password = '';
-  };
+    const setLogout = () => {
+      authStore.isAuth = false;
+      authStore.userId = '';
+      authStore.token = '';
+      authStore.tokenExpiration = '';
+      authStore.email = '';
+      authStore.password = '';
+    };
 
-  return (
-    <NavLinksWrapper>
-      <li>
-        <NavLink to="/" exact className="nav-link">
-          Home
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/new-promo" exact className="nav-link">
-          New Promo
-        </NavLink>
-      </li>
-      {authStore.token === '' ? (
+    return (
+      <NavLinksWrapper>
         <li>
-          <NavLink to="/login" exact className="nav-link">
-            Login
+          <NavLink to="/" exact className="nav-link">
+            Home
           </NavLink>
         </li>
-      ) : null}
-      {authStore.token === '' ? (
         <li>
-          <NavLink to="/register" exact className="nav-link">
-            Register
+          <NavLink to="/new-promo" exact className="nav-link">
+            New Promo
           </NavLink>
         </li>
-      ) : null}
-      {authStore.token !== '' ? (
-        <li>
-          <NavLink onClick={setLogout} to="/" exact className="nav-link">
-            Logout
-          </NavLink>
-        </li>
-      ) : null}
-    </NavLinksWrapper>
-  );
-});
+        {authStore.token === '' && authStore.userId === '' && authStore.tokenExpiration === '' ? (
+          <li>
+            <NavLink to="/login" exact className="nav-link">
+              Login
+            </NavLink>
+          </li>
+        ) : null}
+        {authStore.token === '' && authStore.userId === '' && authStore.tokenExpiration === '' ? (
+          <li>
+            <NavLink to="/register" exact className="nav-link">
+              Register
+            </NavLink>
+          </li>
+        ) : null}
+        {authStore.token !== '' && authStore.userId !== '' && authStore.tokenExpiration !== '' ? (
+          <li>
+            <Link onClick={setLogout} to="/" className="nav-link">
+              Logout
+            </Link>
+          </li>
+        ) : null}
+      </NavLinksWrapper>
+    );
+  }),
+);
 
 const NavLinksWrapper = styled.ul`
   display: flex;
