@@ -32,10 +32,13 @@ const Login = observer(() => {
         }
       `,
       })
-      .then(res => console.log(res.data))
-      .then(() => {
-        authStore.email = '';
-        authStore.password = '';
+      .then(res => {
+        if (res.data.data.login.token) {
+          authStore.isAuth = true;
+        }
+        authStore.userId = res.data.data.login.userId;
+        authStore.token = res.data.data.login.token;
+        authStore.tokenExpiration = res.data.data.login.tokenExpiration;
       })
       .catch(err => console.log(err));
   };
