@@ -9,12 +9,11 @@ const NavbarLinks = observer(() => {
 
   const setLogout = () => {
     authStore.isAuth = false;
-    authStore.userId = null;
-    authStore.token = null;
-    authStore.tokenExpiration = null;
-    authStore.email = null;
-    authStore.password = null;
-    console.log(authStore.userId);
+    authStore.userId = '';
+    authStore.token = '';
+    authStore.tokenExpiration = '';
+    authStore.email = '';
+    authStore.password = '';
   };
 
   return (
@@ -29,21 +28,21 @@ const NavbarLinks = observer(() => {
           New Promo
         </NavLink>
       </li>
-      {authStore.token === null ? (
+      {authStore.token === '' ? (
         <li>
           <NavLink to="/login" exact className="nav-link">
             Login
           </NavLink>
         </li>
       ) : null}
-      {authStore.token === null ? (
+      {authStore.token === '' ? (
         <li>
           <NavLink to="/register" exact className="nav-link">
             Register
           </NavLink>
         </li>
       ) : null}
-      {authStore.token !== null ? (
+      {authStore.token !== '' ? (
         <li>
           <NavLink onClick={setLogout} to="/" exact className="nav-link">
             Logout

@@ -2,11 +2,11 @@ import { observable, decorate } from 'mobx';
 import { createContext } from 'react';
 
 class AuthStore {
-  email = null;
-  password = null;
-  userId = null;
-  token = null;
-  tokenExpiration = null;
+  email = '';
+  password = '';
+  userId = '';
+  token = '';
+  tokenExpiration = '';
   isAuth = false;
 }
 
