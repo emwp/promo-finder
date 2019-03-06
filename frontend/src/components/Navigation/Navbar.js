@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NavbarLinks from './NavbarLinks';
 import Logo from '../../img/logo.png';
@@ -6,9 +7,9 @@ import Logo from '../../img/logo.png';
 const Navbar = () => {
   return (
     <NavWrapper>
-      <div className="nav_logo">
+      <Link to="/" className="nav_logo">
         <img src={Logo} alt="logo" />
-      </div>
+      </Link>
       <NavbarLinks />
     </NavWrapper>
   );
