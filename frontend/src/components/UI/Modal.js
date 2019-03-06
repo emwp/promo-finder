@@ -43,6 +43,7 @@ const ModalWrapper = styled.div`
   top: 20vh;
   left: 5%;
   border-radius: 0.3rem;
+  z-index: 150;
   /* padding: 1rem 1rem; */
 
   header {
