@@ -6,7 +6,7 @@ class PromoStore {
 }
 
 decorate(PromoStore, {
-  createPromo: observable,
+  creatingPromo: observable,
 });
 
 export const PromoStoreContext = createContext(new PromoStore());
