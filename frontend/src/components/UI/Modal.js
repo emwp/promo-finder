@@ -11,7 +11,7 @@ const Modal = observer(props => {
     console.log(promoStore.title);
   };
   const priceChangeHandler = event => {
-    promoStore.price = event.target.value;
+    promoStore.price = +event.target.value;
     console.log(promoStore.price);
   };
   const descriptionChangeHandler = event => {
@@ -19,10 +19,49 @@ const Modal = observer(props => {
     console.log(promoStore.description);
   };
 
+  const submitHandler = event => {
+    event.preventDefault();
+
+    if (
+      promoStore.description.trim().length === 0 ||
+      promoStore.title.trim().length === 0 ||
+      promoStore.price.trim().length === 0
+    ) {
+      return;
+    } else {
+      promoStore.date = new Date().toISOString();
+      console.log(promoStore.date);
+    }
+    // axios
+    //   .post('http://localhost:8000/graphql', {
+    //     query: `
+    //     mutation {
+    //       createPromo(promoInput: {title: "${promoStore.title}", description: "${
+    //       promoStore.description
+    //     }", price: ${promoStore.price}, date: "${promoStore.date}"}) {
+    //         title
+    //         description
+    //         price
+    //         date
+    //       }
+    //     }
+    //   `,
+    //   })
+    //   .then(res => {
+    //     if (res.data.data.login.token) {
+    //       authStore.isAuth = true;
+    //     }
+    //     authStore.userId = res.data.data.login.userId;
+    //     authStore.token = res.data.data.login.token;
+    //     authStore.tokenExpiration = res.data.data.login.tokenExpiration;
+    //   })
+    //   .catch(err => console.log(err));
+  };
+
   return (
     <ModalWrapper>
       <header>Add New Promo</header>
-      <form>
+      <form onSubmit={submitHandler}>
         <section>
           <input
             type="text"
@@ -45,8 +84,10 @@ const Modal = observer(props => {
           />
         </section>
         <section className="btn">
-          <button onClick={props.setCreating}>Cancel</button>
-          <button onClick={props.setCreating}>Continue</button>
+          <button type="button" onClick={props.setCreating}>
+            Cancel
+          </button>
+          <button type="submit">Continue</button>
         </section>
       </form>
     </ModalWrapper>
