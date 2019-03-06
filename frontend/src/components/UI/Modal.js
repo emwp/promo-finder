@@ -5,30 +5,33 @@ const Modal = props => {
   return (
     <ModalWrapper>
       <header>Add New Promo</header>
-      <section>
-        <input
-          type="text"
-          placeholder="Title"
-          // value={authStore.password}
-          // onChange={passChangeHandler}
-        />
-        <input
-          type="text"
-          placeholder="Description"
-          // value={authStore.password}
-          // onChange={passChangeHandler}
-        />
-        <input
-          type="text"
-          placeholder="Price"
-          // value={authStore.password}
-          // onChange={passChangeHandler}
-        />
-      </section>
-      <section className="btn">
-        <button onClick={props.setCreating}>Continue</button>
-        <button onClick={props.setCreating}>Cancel</button>
-      </section>
+      <form>
+        <section>
+          <input
+            type="text"
+            placeholder="Title"
+            // value={authStore.password}
+            // onChange={passChangeHandler}
+          />
+          <input
+            type="number"
+            placeholder="Price"
+            // value={authStore.password}
+            // onChange={passChangeHandler}
+          />
+          <textarea
+            rows="4"
+            type="text"
+            placeholder="Description"
+            // value={authStore.password}
+            // onChange={passChangeHandler}
+          />
+        </section>
+        <section className="btn">
+          <button onClick={props.setCreating}>Cancel</button>
+          <button onClick={props.setCreating}>Continue</button>
+        </section>
+      </form>
     </ModalWrapper>
   );
 };
@@ -54,7 +57,13 @@ const ModalWrapper = styled.div`
     text-align: center;
   }
 
-  input {
+  textarea {
+    resize: vertical;
+    max-height: 20rem;
+  }
+
+  input,
+  textarea {
     width: 90%;
     margin: 0.5rem 5% 0.5rem;
 
