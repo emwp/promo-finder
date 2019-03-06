@@ -76,12 +76,13 @@ export default Register;
 
 const FormWrapper = styled.form`
   background: white;
-  border-radius: 5px;
+  border-radius: 0.3rem;
   padding: 2rem 2rem;
   width: 40rem;
   max-width: 80%;
   margin: 8rem auto;
   box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 
   h1 {
     margin-top: 0;
@@ -100,7 +101,7 @@ const FormWrapper = styled.form`
   }
   button {
     border: 2px solid #fe6756;
-    border-radius: 5px;
+    border-radius: 0.3rem;
     font-size: 1rem;
     color: #fe6756;
     background: white;

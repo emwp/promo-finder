@@ -1,11 +1,8 @@
 import React from 'react';
+import Modal from '../components/UI/Modal';
 
 const Promos = () => {
-  return (
-    <div>
-      <h1>Hello from the Promo Page!</h1>
-    </div>
-  );
+  return <Modal />;
 };
 
 export default Promos;
