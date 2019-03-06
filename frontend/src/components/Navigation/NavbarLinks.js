@@ -24,11 +24,6 @@ const NavbarLinks = withRouter(
             Home
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/new-promo" exact className="nav-link">
-            New Promo
-          </NavLink>
-        </li>
         {authStore.token === '' && authStore.userId === '' && authStore.tokenExpiration === '' ? (
           <li>
             <NavLink to="/login" exact className="nav-link">

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Promos from './containers/Promos';
-import CreatePromo from './containers/CreatePromo';
 import Navbar from './components/Navigation/Navbar';
 import './App.css';
 import Login from '../src/containers/Auth/Login';
@@ -15,10 +14,9 @@ class App extends Component {
           <Navbar />
           <main className="main-content">
             <Switch>
+              <Route exact path="/" component={Promos} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
-              <Route exact path="/promos" component={Promos} />
-              <Route exact path="/new-promo" component={CreatePromo} />
             </Switch>
           </main>
         </React.Fragment>

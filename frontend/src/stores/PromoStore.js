@@ -2,7 +2,7 @@ import { observable, decorate } from 'mobx';
 import { createContext } from 'react';
 
 class PromoStore {
-  createPromo = false;
+  creatingPromo = false;
 }
 
 decorate(PromoStore, {
