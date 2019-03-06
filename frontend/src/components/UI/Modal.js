@@ -1,61 +1,78 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import { observer } from 'mobx-react-lite';
 import { PromoStoreContext } from '../../stores/PromoStore';
+import { AuthStoreContext } from '../../stores/AuthStore';
 
 const Modal = observer(props => {
   const promoStore = useContext(PromoStoreContext);
+  const authStore = useContext(AuthStoreContext);
 
   const titleChangeHandler = event => {
     promoStore.title = event.target.value;
-    console.log(promoStore.title);
   };
   const priceChangeHandler = event => {
     promoStore.price = +event.target.value;
-    console.log(promoStore.price);
   };
   const descriptionChangeHandler = event => {
     promoStore.description = event.target.value;
-    console.log(promoStore.description);
   };
+
+  const endNewPromo = () => {
+    promoStore.title = '';
+    promoStore.description = '';
+    promoStore.price = '';
+    promoStore.date = '';
+    promoStore.creatingPromo = !promoStore.creatingPromo;
+
+  }
 
   const submitHandler = event => {
     event.preventDefault();
+    const getToken = authStore.token;
 
     if (
       promoStore.description.trim().length === 0 ||
       promoStore.title.trim().length === 0 ||
-      promoStore.price.trim().length === 0
+      promoStore.price <= 0
     ) {
       return;
     } else {
       promoStore.date = new Date().toISOString();
-      console.log(promoStore.date);
     }
-    // axios
-    //   .post('http://localhost:8000/graphql', {
-    //     query: `
-    //     mutation {
-    //       createPromo(promoInput: {title: "${promoStore.title}", description: "${
-    //       promoStore.description
-    //     }", price: ${promoStore.price}, date: "${promoStore.date}"}) {
-    //         title
-    //         description
-    //         price
-    //         date
-    //       }
-    //     }
-    //   `,
-    //   })
-    //   .then(res => {
-    //     if (res.data.data.login.token) {
-    //       authStore.isAuth = true;
-    //     }
-    //     authStore.userId = res.data.data.login.userId;
-    //     authStore.token = res.data.data.login.token;
-    //     authStore.tokenExpiration = res.data.data.login.tokenExpiration;
-    //   })
-    //   .catch(err => console.log(err));
+    axios
+      .post(
+        'http://localhost:8000/graphql',
+        {
+          query: `
+        mutation {
+          createPromo(promoInput: {title: "${promoStore.title}", description: "${
+            promoStore.description
+          }", price: ${promoStore.price}, date: "${promoStore.date}"}) {
+            _id
+            title
+            description
+            price
+            date
+            creator {
+              _id
+              email
+            }
+          }
+        }
+      `,
+        },
+        {
+          headers: {
+            'Authorization': 'Bearer ' + getToken,
+            'Content-Type': 'application/json',
+        }
+      }
+      )
+      .then(res => console.log(res.data.data.createPromo))
+      .then(endNewPromo())
+      .catch(err => console.log(err));
   };
 
   return (
@@ -87,7 +104,7 @@ const Modal = observer(props => {
           <button type="button" onClick={props.setCreating}>
             Cancel
           </button>
-          <button type="submit">Continue</button>
+          <button type="submit" >Continue</button>
         </section>
       </form>
     </ModalWrapper>
@@ -105,7 +122,6 @@ const ModalWrapper = styled.div`
   left: 5%;
   border-radius: 0.3rem;
   z-index: 150;
-  /* padding: 1rem 1rem; */
 
   header {
     font-size: 1.5rem;
