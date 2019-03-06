@@ -8,14 +8,14 @@ const Promos = observer(() => {
   const promoStore = useContext(PromoStoreContext);
 
   const setCreatingPromo = () => {
-    promoStore.creatingPromo = true;
+    promoStore.creatingPromo = !promoStore.creatingPromo;
     console.log(promoStore.creatingPromo);
   };
 
   return (
     <React.Fragment>
       <button onClick={setCreatingPromo}>Create New Promo</button>
-      {promoStore.creatingPromo === true ? <Modal /> : null}
+      {promoStore.creatingPromo === true ? <Modal setCreating={setCreatingPromo} /> : null}
       {promoStore.creatingPromo === true ? <Backdrop /> : null}
     </React.Fragment>
   );

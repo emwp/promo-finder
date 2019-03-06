@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Modal = () => {
+const Modal = props => {
   return (
     <ModalWrapper>
       <header>Add New Promo</header>
@@ -26,8 +26,8 @@ const Modal = () => {
         />
       </section>
       <section className="btn">
-        <button>Continue</button>
-        <button>Cancel</button>
+        <button onClick={props.setCreating}>Continue</button>
+        <button onClick={props.setCreating}>Cancel</button>
       </section>
     </ModalWrapper>
   );
