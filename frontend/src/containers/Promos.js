@@ -9,6 +9,12 @@ const Promos = observer(() => {
 
   const setCreatingPromo = () => {
     promoStore.creatingPromo = !promoStore.creatingPromo;
+    if (promoStore.creatingPromo === false) {
+      promoStore.title = '';
+      promoStore.price = '';
+      promoStore.description = '';
+      promoStore.date = '';
+    }
     console.log(promoStore.creatingPromo);
   };
 
