@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { observer } from 'mobx-react-lite';
+import { PromoStoreContext } from '../../stores/PromoStore';
 
-const Modal = props => {
+const Modal = observer(props => {
+  const promoStore = useContext(PromoStoreContext);
+
+  const titleChangeHandler = event => {
+    promoStore.title = event.target.value;
+    console.log(promoStore.title);
+  };
+  const priceChangeHandler = event => {
+    promoStore.price = event.target.value;
+    console.log(promoStore.price);
+  };
+  const descriptionChangeHandler = event => {
+    promoStore.description = event.target.value;
+    console.log(promoStore.description);
+  };
+
   return (
     <ModalWrapper>
       <header>Add New Promo</header>
@@ -10,21 +27,21 @@ const Modal = props => {
           <input
             type="text"
             placeholder="Title"
-            // value={authStore.password}
-            // onChange={passChangeHandler}
+            value={promoStore.title}
+            onChange={titleChangeHandler}
           />
           <input
             type="number"
             placeholder="Price"
-            // value={authStore.password}
-            // onChange={passChangeHandler}
+            value={promoStore.price}
+            onChange={priceChangeHandler}
           />
           <textarea
             rows="4"
             type="text"
             placeholder="Description"
-            // value={authStore.password}
-            // onChange={passChangeHandler}
+            value={promoStore.description}
+            onChange={descriptionChangeHandler}
           />
         </section>
         <section className="btn">
@@ -34,7 +51,7 @@ const Modal = props => {
       </form>
     </ModalWrapper>
   );
-};
+});
 
 export default Modal;
 
