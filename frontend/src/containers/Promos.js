@@ -40,14 +40,20 @@ const Promos = observer(() => {
       `,
       })
       .then(res => {
-        console.log(res.data);
         promoStore.listedPromos = res.data.data.promos;
       })
       .catch(err => console.log(err));
   };
 
   const promoList = promoStore.listedPromos.map(promo => {
-    return <li key={promo._id}>{promo.title}</li>;
+    return (
+      <li key={promo._id}>
+        <h1>
+          {promo.title} - ${promo.price.toFixed(2)}
+        </h1>
+        <p>{promo.description}</p>
+      </li>
+    );
   });
 
   return (
@@ -118,5 +124,11 @@ const PromoWrapper = styled.ul`
     border-radius: 0.4rem;
     overflow: auto;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  h1 {
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 0;
   }
 `;

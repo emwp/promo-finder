@@ -64,7 +64,7 @@ const Modal = observer(props => {
         },
         {
           headers: {
-            Authorization: 'Bearer ' + getToken,
+            'Authorization': 'Bearer ' + getToken,
             'Content-Type': 'application/json',
           },
         },
