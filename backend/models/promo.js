@@ -12,6 +12,10 @@ const promoSchema = new Schema({
     type: String,
     required: true,
   },
+  store: {
+    type: String,
+    required: true,
+  },
   description: {
     type: String,
     required: true,

@@ -22,6 +22,7 @@ module.exports = {
     const promo = new Promo({
       title: arg.promoInput.title,
       link: arg.promoInput.link,
+      store: arg.promoInput.store,
       description: arg.promoInput.description,
       price: +arg.promoInput.price,
       date: new Date(arg.promoInput.date),
