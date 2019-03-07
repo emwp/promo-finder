@@ -10,7 +10,7 @@ const Modal = observer(props => {
   const authStore = useContext(AuthStoreContext);
 
   const titleChangeHandler = event => {
-    promoStore.title = event.target.value.toString();
+    promoStore.title = String(event.target.value);
   };
   const linkChangeHandler = event => {
     promoStore.link = event.target.value.toString();
@@ -26,12 +26,12 @@ const Modal = observer(props => {
   };
 
   const endNewPromo = () => {
-    // promoStore.title = '';
-    // promoStore.link = '';
-    // promoStore.store = '';
-    // promoStore.description = '';
-    // promoStore.price = '';
-    // promoStore.date = '';
+    promoStore.title = '';
+    promoStore.link = '';
+    promoStore.store = '';
+    promoStore.description = '';
+    promoStore.price = '';
+    promoStore.date = '';
     promoStore.creatingPromo = !promoStore.creatingPromo;
   };
 

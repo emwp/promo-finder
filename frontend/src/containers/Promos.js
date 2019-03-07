@@ -58,9 +58,9 @@ const Promos = observer(() => {
     return (
       <li key={promo._id}>
         <h1>
-          <a href={promo.link}>{promo.title.toString()}</a> {promoStore.store}
+          <a target="_blank" rel="noopener noreferrer" href={promo.link}>{promo.title}  - [{promo.store}]</a>
         </h1>
-        <p>${promo.price.toFixed(2)}</p>
+        <p className="promo_price">${promo.price.toFixed(2)}</p>
         <p>{promo.description}</p>
       </li>
     );
@@ -134,6 +134,15 @@ const PromoWrapper = styled.ul`
     border-radius: 0.4rem;
     overflow: auto;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .promo_price {
+    text-align: center;
+  }
+
+  a {
+    color: #fe6756;
+    text-decoration: none;
   }
 
   h1 {
