@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Modal from '../components/UI/Modal';
 import Backdrop from '../components/UI/Backdrop';
+import axios from 'axios';
 import { observer } from 'mobx-react-lite';
 import { PromoStoreContext } from '../stores/PromoStore';
 import { AuthStoreContext } from '../stores/AuthStore';
@@ -8,6 +9,10 @@ import { AuthStoreContext } from '../stores/AuthStore';
 const Promos = observer(() => {
   const promoStore = useContext(PromoStoreContext);
   const authStore = useContext(AuthStoreContext);
+
+  useEffect(() => {
+    fetchEvents();
+  }, []);
 
   const setCreatingPromo = () => {
     promoStore.creatingPromo = !promoStore.creatingPromo;
@@ -17,7 +22,27 @@ const Promos = observer(() => {
       promoStore.description = '';
       promoStore.date = '';
     }
-    console.log(promoStore.creatingPromo);
+  };
+
+  const fetchEvents = () => {
+    axios
+      .post('http://localhost:8000/graphql', {
+        query: `
+        query {
+          promos {
+            _id
+            title
+            description
+            price
+          }
+        }
+      `,
+      })
+      .then(res => {
+        console.log(res.data);
+        promoStore.listedPromos = res.data.data.promos;
+      })
+      .catch(err => console.log(err));
   };
 
   return (
