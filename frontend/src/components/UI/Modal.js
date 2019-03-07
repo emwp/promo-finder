@@ -10,7 +10,13 @@ const Modal = observer(props => {
   const authStore = useContext(AuthStoreContext);
 
   const titleChangeHandler = event => {
-    promoStore.title = event.target.value;
+    promoStore.title = event.target.value.toString();
+  };
+  const linkChangeHandler = event => {
+    promoStore.link = event.target.value.toString();
+  };
+  const storeChangeHandler = event => {
+    promoStore.store = event.target.value;
   };
   const priceChangeHandler = event => {
     promoStore.price = +event.target.value;
@@ -20,10 +26,12 @@ const Modal = observer(props => {
   };
 
   const endNewPromo = () => {
-    promoStore.title = '';
-    promoStore.description = '';
-    promoStore.price = '';
-    promoStore.date = '';
+    // promoStore.title = '';
+    // promoStore.link = '';
+    // promoStore.store = '';
+    // promoStore.description = '';
+    // promoStore.price = '';
+    // promoStore.date = '';
     promoStore.creatingPromo = !promoStore.creatingPromo;
   };
 
@@ -33,6 +41,7 @@ const Modal = observer(props => {
 
     if (
       promoStore.description.trim().length === 0 ||
+      promoStore.link.trim().length === 0 ||
       promoStore.title.trim().length === 0 ||
       promoStore.price <= 0
     ) {
@@ -46,11 +55,13 @@ const Modal = observer(props => {
         {
           query: `
         mutation {
-          createPromo(promoInput: {title: "${promoStore.title}", description: "${
+          createPromo(promoInput: {title: "${promoStore.title}", link: "${promoStore.link}", store: "${promoStore.store}", description: "${
             promoStore.description
           }", price: ${promoStore.price}, date: "${promoStore.date}"}) {
             _id
             title
+            link
+            store
             description
             price
             date
@@ -85,6 +96,18 @@ const Modal = observer(props => {
             placeholder="Title"
             value={promoStore.title}
             onChange={titleChangeHandler}
+          />
+          <input
+            type="text"
+            placeholder="Promo URL"
+            value={promoStore.link}
+            onChange={linkChangeHandler}
+          />
+          <input
+            type="text"
+            placeholder="Store"
+            value={promoStore.store}
+            onChange={storeChangeHandler}
           />
           <input
             type="number"

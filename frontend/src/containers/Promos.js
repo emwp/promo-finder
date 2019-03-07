@@ -19,6 +19,8 @@ const Promos = observer(() => {
     promoStore.creatingPromo = !promoStore.creatingPromo;
     if (promoStore.creatingPromo === false) {
       promoStore.title = '';
+      promoStore.link = '';
+      promoStore.store = '';
       promoStore.price = '';
       promoStore.description = '';
       promoStore.date = '';
@@ -33,6 +35,8 @@ const Promos = observer(() => {
           promos {
             _id
             title
+            link
+            store
             description
             price
             creator {
@@ -54,8 +58,9 @@ const Promos = observer(() => {
     return (
       <li key={promo._id}>
         <h1>
-          {promo.title} - ${promo.price.toFixed(2)}
+          <a href={promo.link}>{promo.title.toString()}</a> {promoStore.store}
         </h1>
+        <p>${promo.price.toFixed(2)}</p>
         <p>{promo.description}</p>
       </li>
     );
