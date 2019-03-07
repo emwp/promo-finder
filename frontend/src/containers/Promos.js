@@ -56,7 +56,9 @@ const Promos = observer(() => {
         <h1>Share Promotions!</h1>
         {authStore.isAuth ? <button onClick={setCreatingPromo}>Create New Promo</button> : null}
       </HeaderWrapper>
-      {promoStore.creatingPromo === true ? <Modal setCreating={setCreatingPromo} /> : null}
+      {promoStore.creatingPromo === true ? (
+        <Modal setCreating={setCreatingPromo} fetchEvents={fetchEvents} />
+      ) : null}
       {promoStore.creatingPromo === true ? <Backdrop /> : null}
       <PromoWrapper>{promoList}</PromoWrapper>
     </React.Fragment>

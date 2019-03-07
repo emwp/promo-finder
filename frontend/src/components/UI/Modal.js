@@ -25,8 +25,7 @@ const Modal = observer(props => {
     promoStore.price = '';
     promoStore.date = '';
     promoStore.creatingPromo = !promoStore.creatingPromo;
-
-  }
+  };
 
   const submitHandler = event => {
     event.preventDefault();
@@ -65,13 +64,14 @@ const Modal = observer(props => {
         },
         {
           headers: {
-            'Authorization': 'Bearer ' + getToken,
+            Authorization: 'Bearer ' + getToken,
             'Content-Type': 'application/json',
-        }
-      }
+          },
+        },
       )
       .then(res => console.log(res.data.data.createPromo))
       .then(endNewPromo())
+      .then(props.fetchEvents)
       .catch(err => console.log(err));
   };
 
@@ -104,7 +104,7 @@ const Modal = observer(props => {
           <button type="button" onClick={props.setCreating}>
             Cancel
           </button>
-          <button type="submit" >Continue</button>
+          <button type="submit">Continue</button>
         </section>
       </form>
     </ModalWrapper>
