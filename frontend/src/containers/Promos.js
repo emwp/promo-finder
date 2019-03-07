@@ -35,12 +35,17 @@ const Promos = observer(() => {
             title
             description
             price
+            creator {
+              _id
+              email
+            }
           }
         }
       `,
       })
       .then(res => {
         promoStore.listedPromos = res.data.data.promos;
+        console.log(res.data.data.promos);
       })
       .catch(err => console.log(err));
   };

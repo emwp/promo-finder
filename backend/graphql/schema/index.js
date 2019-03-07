@@ -5,6 +5,7 @@ module.exports = buildSchema(`
 type Promo {
   _id: ID!
   title: String!
+  link: String!
   description: String!
   price: Float!
   date: String!
@@ -31,6 +32,7 @@ input UserInput {
 
 input PromoInput {
   title: String!
+  link: String!
   description: String!
   price: Float!
   date: String!
