@@ -2,28 +2,28 @@ import React from 'react';
 import PromoItem from './PromoItem/PromoItem';
 import styled from 'styled-components';
 
-const PromoList = (props) => {
-
+const PromoList = props => {
   const promos = props.promos.map(promo => {
     return (
-      <PromoItem 
-        key={promo._id} 
-        promoId={promo._id} 
-        title={promo.title} 
-        description={promo.description} 
-        price={promo.price} 
-        date={promo.date} 
+      <PromoItem
+        key={promo._id}
+        promoId={promo._id}
+        title={promo.title}
+        description={promo.description}
+        price={promo.price}
+        date={promo.date}
         store={promo.store}
-        link={promo.link}/>
-    ) 
+        creatorId={promo.creator._id}
+        userId={props.userId}
+        link={promo.link}
+      />
+    );
   });
 
-  return (
-    <PromoWrapper>{promos}</PromoWrapper>
-  )
-}
+  return <PromoWrapper>{promos}</PromoWrapper>;
+};
 
-export default PromoList
+export default PromoList;
 
 const PromoWrapper = styled.ul`
   width: 40rem;

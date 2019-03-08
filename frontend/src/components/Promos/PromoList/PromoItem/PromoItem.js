@@ -1,17 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const PromoItem = (props) => {
+const PromoItem = props => {
   return (
     <ItemWrapper key={props.promoId}>
-    <h1>
-      <a target="_blank" rel="noopener noreferrer" href={props.link}>{props.title}  - [{props.store}]</a>
-    </h1>
-    <p className="promo_price">${props.price.toFixed(2)}</p>
-    <p>{props.description}</p>
-  </ItemWrapper>
-  )
-}
+      <h1>
+        <a target="_blank" rel="noopener noreferrer" href={props.link}>
+          {props.title} - [{props.store}]
+        </a>
+      </h1>
+      <p className="promo_price">${props.price.toFixed(2)}</p>
+      <p>{props.description}</p>
+      {props.userId === props.creatorId ? <p>You've Created this promo</p> : null}
+    </ItemWrapper>
+  );
+};
 
 export default PromoItem;
 
@@ -26,17 +29,17 @@ const ItemWrapper = styled.li`
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 
   .promo_price {
-  text-align: center;
-}
+    text-align: center;
+  }
 
-a {
-  color: #fe6756;
-  text-decoration: none;
-}
+  a {
+    color: #fe6756;
+    text-decoration: none;
+  }
 
-h1 {
-  font-size: 1.2rem;
-  text-align: center;
-  margin: 0;
-}
+  h1 {
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 0;
+  }
 `;

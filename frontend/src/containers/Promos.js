@@ -65,7 +65,7 @@ const Promos = observer(() => {
         <Modal setCreating={setCreatingPromo} fetchPromos={fetchPromos} />
       ) : null}
       {promoStore.creatingPromo === true ? <Backdrop /> : null}
-      <PromoList promos={promoStore.listedPromos} />
+      <PromoList promos={promoStore.listedPromos} userId={authStore.userId} />
     </React.Fragment>
   );
 });
