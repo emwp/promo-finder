@@ -80,9 +80,26 @@ const Modal = observer(props => {
           },
         },
       )
-      .then(res => console.log(res.data.data.createPromo))
+      .then(res => {
+        // console.log(res.data.data.createPromo);
+        const promos = [...promoStore.listedPromos];
+
+        promos.push({
+          _id: res.data.data.createPromo._id,
+          title: res.data.data.createPromo.title,
+          link: res.data.data.createPromo.link,
+          store: res.data.data.createPromo.store,
+          description: res.data.data.createPromo.description,
+          price: res.data.data.createPromo.price,
+          date: res.data.data.createPromo.date,
+          creator: {
+            _id: authStore.userId
+          }
+        })
+        promoStore.listedPromos = promos;
+      })
       .then(endNewPromo())
-      .then(props.fetchEvents)
+      // .then(props.fetchPromos)
       .catch(err => console.log(err));
   };
 

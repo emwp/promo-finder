@@ -6,14 +6,14 @@ import { observer } from 'mobx-react-lite';
 import { PromoStoreContext } from '../stores/PromoStore';
 import { AuthStoreContext } from '../stores/AuthStore';
 import styled from 'styled-components';
-import PromoList from '../components/Promos/PromoList/PromoList'
+import PromoList from '../components/Promos/PromoList/PromoList';
 
 const Promos = observer(() => {
   const promoStore = useContext(PromoStoreContext);
   const authStore = useContext(AuthStoreContext);
 
   useEffect(() => {
-    fetchEvents();
+    fetchPromos();
   }, []);
 
   const setCreatingPromo = () => {
@@ -28,7 +28,7 @@ const Promos = observer(() => {
     }
   };
 
-  const fetchEvents = () => {
+  const fetchPromos = () => {
     axios
       .post('http://localhost:8000/graphql', {
         query: `
@@ -50,7 +50,7 @@ const Promos = observer(() => {
       })
       .then(res => {
         promoStore.listedPromos = res.data.data.promos;
-        console.log(res.data.data.promos);
+        // console.log(res.data.data.promos);
       })
       .catch(err => console.log(err));
   };
@@ -62,7 +62,7 @@ const Promos = observer(() => {
         {authStore.isAuth ? <button onClick={setCreatingPromo}>Create New Promo</button> : null}
       </HeaderWrapper>
       {promoStore.creatingPromo === true ? (
-        <Modal setCreating={setCreatingPromo} fetchEvents={fetchEvents} />
+        <Modal setCreating={setCreatingPromo} fetchPromos={fetchPromos} />
       ) : null}
       {promoStore.creatingPromo === true ? <Backdrop /> : null}
       <PromoList promos={promoStore.listedPromos} />
