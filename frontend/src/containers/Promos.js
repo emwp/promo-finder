@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import Modal from '../components/UI/Modal';
 import Backdrop from '../components/UI/Backdrop';
+import Spinner from '../components/UI/Spinner';
 import axios from 'axios';
 import { observer } from 'mobx-react-lite';
 import { PromoStoreContext } from '../stores/PromoStore';
@@ -29,6 +30,8 @@ const Promos = observer(() => {
   };
 
   const fetchPromos = () => {
+    promoStore.loading = true;
+
     axios
       .post('http://localhost:8000/graphql', {
         query: `
@@ -50,9 +53,13 @@ const Promos = observer(() => {
       })
       .then(res => {
         promoStore.listedPromos = res.data.data.promos;
+        promoStore.loading = false;
         // console.log(res.data.data.promos);
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        promoStore.loading = false;
+      });
   };
 
   return (
@@ -65,7 +72,12 @@ const Promos = observer(() => {
         <Modal setCreating={setCreatingPromo} fetchPromos={fetchPromos} />
       ) : null}
       {promoStore.creatingPromo === true ? <Backdrop /> : null}
-      <PromoList promos={promoStore.listedPromos} userId={authStore.userId} />
+
+      {promoStore.loading ? (
+        <Spinner />
+      ) : (
+        <PromoList promos={promoStore.listedPromos} userId={authStore.userId} />
+      )}
     </React.Fragment>
   );
 });
