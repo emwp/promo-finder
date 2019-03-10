@@ -41,6 +41,7 @@ const Promos = observer(() => {
             title
             link
             store
+            date
             description
             price
             creator {

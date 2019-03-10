@@ -28,7 +28,7 @@ const PromoItem = observer(props => {
           </a>
         </h1>
         <p className="promo_price">${props.price.toFixed(2)}</p>
-        <p>{props.description}</p>
+        <p className="promo_desc">{props.description}</p>
         <button onClick={setShowDetails}>Details</button>
         {props.userId === props.creatorId ? (
           <p className="promo_owner">You've created this promo</p>
@@ -54,6 +54,10 @@ const ItemWrapper = styled.li`
 
   .promo_price {
     text-align: center;
+  }
+
+  .promo_desc {
+    text-align: justify;
   }
 
   .promo_owner {

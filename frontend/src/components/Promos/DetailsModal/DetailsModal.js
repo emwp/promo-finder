@@ -8,7 +8,7 @@ const DetailsModal = props => {
     <ModalWrapper>
       <header>{selectedPromo.title}</header>
       <section>
-        <p />
+        <p>{new Date(selectedPromo.date).toLocaleDateString('pt-BR')}</p>
       </section>
       <section className="btn">
         <button type="button" onClick={props.setDetails}>
