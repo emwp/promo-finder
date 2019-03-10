@@ -54,6 +54,7 @@ const ItemWrapper = styled.li`
     margin: 0 auto;
     align-items: center;
     font-family: inherit;
+    outline: none;
   }
 
   button:hover,
