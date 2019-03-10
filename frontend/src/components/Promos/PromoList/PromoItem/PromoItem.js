@@ -1,23 +1,37 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import DetailsModal from '../../DetailsModal/DetailsModal';
+import { observer } from 'mobx-react-lite';
+import { PromoStoreContext } from '../../../../stores/PromoStore';
 
-const PromoItem = props => {
+const PromoItem = observer(props => {
+  const promoStore = useContext(PromoStoreContext);
+
+  const setShowDetails = () => {
+    promoStore.showDetails = !promoStore.showDetails;
+  };
+
   return (
-    <ItemWrapper key={props.promoId}>
-      <h1>
-        <a target="_blank" rel="noopener noreferrer" href={props.link}>
-          {props.title} - [{props.store}]
-        </a>
-      </h1>
-      <p className="promo_price">${props.price.toFixed(2)}</p>
-      <p>{props.description}</p>
-      <button>Details</button>
-      {props.userId === props.creatorId ? (
-        <p className="promo_owner">You've created this promo</p>
+    <React.Fragment>
+      {promoStore.showDetails === true ? (
+        <DetailsModal setDetails={setShowDetails} store={props.store} />
       ) : null}
-    </ItemWrapper>
+      <ItemWrapper key={props.promoId}>
+        <h1>
+          <a target="_blank" rel="noopener noreferrer" href={props.link}>
+            {props.title} - [{props.store}]
+          </a>
+        </h1>
+        <p className="promo_price">${props.price.toFixed(2)}</p>
+        <p>{props.description}</p>
+        <button onClick={setShowDetails}>Details</button>
+        {props.userId === props.creatorId ? (
+          <p className="promo_owner">You've created this promo</p>
+        ) : null}
+      </ItemWrapper>
+    </React.Fragment>
   );
-};
+});
 
 export default PromoItem;
 
