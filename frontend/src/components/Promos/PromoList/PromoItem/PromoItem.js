@@ -9,12 +9,17 @@ const PromoItem = observer(props => {
 
   const setShowDetails = () => {
     promoStore.showDetails = !promoStore.showDetails;
+    promoStore.promoDetail = props.promoId;
   };
 
   return (
     <React.Fragment>
       {promoStore.showDetails === true ? (
-        <DetailsModal setDetails={setShowDetails} store={props.store} />
+        <DetailsModal
+          setDetails={setShowDetails}
+          selected={promoStore.promoDetail}
+          promos={promoStore.listedPromos}
+        />
       ) : null}
       <ItemWrapper key={props.promoId}>
         <h1>

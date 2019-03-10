@@ -12,6 +12,7 @@ class PromoStore {
   listedPromos = [];
   loading = false;
   showDetails = false;
+  promoDetail = '';
 }
 
 decorate(PromoStore, {
@@ -25,6 +26,7 @@ decorate(PromoStore, {
   listedPromos: observable,
   loading: observable,
   showDetails: observable,
+  promoDetail: observable,
 });
 
 export const PromoStoreContext = createContext(new PromoStore());

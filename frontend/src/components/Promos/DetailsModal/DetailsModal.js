@@ -2,11 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 const DetailsModal = props => {
+  const selectedPromo = props.promos.find(promo => promo._id === props.selected);
+
   return (
     <ModalWrapper>
-      <header>Details</header>
+      <header>{selectedPromo.title}</header>
       <section>
-        <p>{props.store}</p>
+        <p />
       </section>
       <section className="btn">
         <button type="button" onClick={props.setDetails}>
