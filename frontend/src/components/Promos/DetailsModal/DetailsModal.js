@@ -16,6 +16,9 @@ const DetailsModal = props => {
         <p>Date Added: {new Date(selectedPromo.date).toLocaleDateString('pt-BR')}</p>
         <p>Store: {selectedPromo.store}</p>
       </section>
+      <section className="promo_description">
+        <p>{selectedPromo.description}</p>
+      </section>
       <section className="btn">
         <button type="button" onClick={props.setDetails}>
           Close
@@ -41,7 +44,8 @@ const ModalWrapper = styled.div`
     font-size: 1.5rem;
     font-weight: 600;
     color: #fe6756;
-    padding: 1rem;
+    padding: 0 1rem;
+    margin-top: 0.5rem;
     text-align: center;
   }
 
@@ -51,10 +55,16 @@ const ModalWrapper = styled.div`
   }
 
   .promo_details {
-    color: #fe6756;
+    color: #686868;
     display: flex;
     justify-content: space-between;
-    margin: 0 1rem;
+    margin: 0 1.2rem;
+  }
+
+  .promo_description p {
+    margin: 0 1rem 0.7rem 1.2rem;
+    color: #fe6756;
+    text-align: justify;
   }
 
   button {
