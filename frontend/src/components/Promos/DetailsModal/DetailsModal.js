@@ -20,6 +20,8 @@ const DetailsModal = props => {
         <p>{selectedPromo.description}</p>
       </section>
       <section className="btn">
+        <button>Edit</button>
+        <button>Delete</button>
         <button type="button" onClick={props.setDetails}>
           Close
         </button>
@@ -76,7 +78,7 @@ const ModalWrapper = styled.div`
     margin: 0.5rem 0.5rem 1rem 0.5rem;
     padding: 4px 0;
     cursor: pointer;
-    width: 30%;
+    width: 25%;
     font-family: inherit;
     display: inline-block;
   }
