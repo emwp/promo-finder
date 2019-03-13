@@ -4,5 +4,5 @@ body {
   font-family: 'Open Sans', sans-serif;
   background: url('./img/red.svg') no-repeat;
   background-size: cover;
-  height: 100vh;
+  height: 100%;
 }
