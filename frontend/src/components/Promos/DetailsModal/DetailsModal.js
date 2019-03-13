@@ -49,6 +49,7 @@ const ModalWrapper = styled.div`
     padding: 0 1rem;
     margin-top: 0.5rem;
     text-align: center;
+    padding: 1rem;
   }
 
   a {
@@ -65,6 +66,7 @@ const ModalWrapper = styled.div`
 
   .promo_description p {
     margin: 0 1rem 0.7rem 1.2rem;
+    padding: 1rem 0;
     color: #fe6756;
     text-align: justify;
   }
