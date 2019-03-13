@@ -67,7 +67,7 @@ const Promos = observer(() => {
     <React.Fragment>
       <HeaderWrapper>
         <h1>Share Promotions!</h1>
-        {authStore.isAuth ? <button onClick={setCreatingPromo}>Create New Promo</button> : null}
+        {authStore.isAuth ? <button onClick={setCreatingPromo}>Add New</button> : null}
       </HeaderWrapper>
       {promoStore.creatingPromo === true ? (
         <Modal setCreating={setCreatingPromo} fetchPromos={fetchPromos} />
@@ -104,7 +104,8 @@ const HeaderWrapper = styled.div`
     background: white;
     padding: 0.5rem 0;
     cursor: pointer;
-    width: 30%;
+    width: 15rem;
+    max-width: 30rem;
     align-items: center;
     font-family: inherit;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);

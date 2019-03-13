@@ -68,7 +68,7 @@ const ItemWrapper = styled.li`
     background: white;
     padding: 4px 0;
     cursor: pointer;
-    width: 25%;
+    width: 7rem;
     margin: 0 auto;
     align-items: center;
     font-family: inherit;
