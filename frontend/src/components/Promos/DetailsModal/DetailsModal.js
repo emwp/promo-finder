@@ -12,7 +12,7 @@ const DetailsModal = props => {
         </a>
       </header>
       <section className="promo_details">
-        <p>Price: ${selectedPromo.price}</p>
+        <p>Price: ${selectedPromo.price.toFixed(2)}</p>
         <p>Date Added: {new Date(selectedPromo.date).toLocaleDateString('pt-BR')}</p>
         <p>Store: {selectedPromo.store}</p>
       </section>
