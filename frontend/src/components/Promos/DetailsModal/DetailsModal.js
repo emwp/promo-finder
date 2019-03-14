@@ -37,7 +37,7 @@ const ModalWrapper = styled.div`
   background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   position: fixed;
-  top: 20vh;
+  top: 10vh;
   left: 5%;
   border-radius: 0.3rem;
   z-index: 150;
@@ -61,6 +61,7 @@ const ModalWrapper = styled.div`
     color: #686868;
     display: flex;
     justify-content: space-between;
+    text-align: center;
     margin: 0 1.2rem;
   }
 
