@@ -37,7 +37,7 @@ const ToggleBtn = styled.button`
     outline: none;
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 767px) {
     display: none;
   }
 `;

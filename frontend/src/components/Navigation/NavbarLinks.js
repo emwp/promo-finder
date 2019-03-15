@@ -56,7 +56,7 @@ const NavLinksWrapper = styled.ul`
   padding: 0;
   list-style: none;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     display: none;
   }
 

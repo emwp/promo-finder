@@ -34,7 +34,7 @@ const NavWrapper = styled.nav`
   justify-content: space-around;
   z-index: 200;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     .nav_logo {
       justify-content: space-between;
     }
