@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import NavbarLinks from './NavbarLinks';
 import Logo from '../../img/logo.png';
+import ToggleButton from './SideDrawer/ToggleButton';
 
 const Navbar = () => {
   return (
     <NavWrapper>
+      <ToggleButton />
       <Link to="/" className="nav_logo">
         <img src={Logo} alt="logo" />
       </Link>
@@ -31,15 +33,7 @@ const NavWrapper = styled.nav`
   align-items: center;
   justify-content: space-around;
 
-  .nav_toggle {
-    display: none;
-  }
-
   @media (max-width: 768px) {
-    .nav_toggle {
-      display: flex;
-      cursor: pointer;
-    }
     .nav_logo {
       justify-content: space-between;
     }
