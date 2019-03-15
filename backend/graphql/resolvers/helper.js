@@ -1,5 +1,14 @@
+const DataLoader = require('dataloader');
 const Promo = require('../../models/promo');
 const User = require('../../models/user');
+
+const promoLoader = new DataLoader(promoIds => {
+  return promos(promoIds);
+});
+
+const userLoader = new DataLoader(userIds => {
+  return User.find({ _id: { $in: userIds } });
+});
 
 // Relates the user to the promo created
 const promos = async promoIds => {
@@ -16,12 +25,12 @@ const promos = async promoIds => {
 // Relates the promo to the user who created
 const user = async userId => {
   try {
-    const user = await User.findById(userId);
+    const user = await userLoader.load(userId.toString());
     return {
       ...user._doc,
       _id: user.id,
       password: null,
-      createdPromos: promos.bind(this, user._doc.createdPromos),
+      createdPromos: promoLoader.loadMany.bind(this, user._doc.createdPromos),
     };
   } catch (err) {
     throw err;
