@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Promos from './containers/Promos';
 import Navbar from './components/Navigation/Navbar';
+import Backdrop from './components/UI/Backdrop';
 import './App.css';
 import Login from '../src/containers/Auth/Login';
 import Register from '../src/containers/Auth/Register';
@@ -14,6 +15,7 @@ const App = observer(() => {
   return (
     <Router>
       <React.Fragment>
+        {authStore.toggleSideDrawer ? <Backdrop /> : null}
         {authStore.toggleSideDrawer ? <SideDrawer /> : null}
         <Navbar />
         <main className="main-content">
