@@ -30,7 +30,7 @@ const user = async userId => {
       ...user._doc,
       _id: user.id,
       password: null,
-      createdPromos: promoLoader.loadMany.bind(this, user._doc.createdPromos),
+      createdPromos: () => promoLoader.loadMany(user._doc.createdPromos),
     };
   } catch (err) {
     throw err;
