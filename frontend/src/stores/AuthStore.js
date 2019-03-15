@@ -8,6 +8,7 @@ class AuthStore {
   token = '';
   tokenExpiration = '';
   isAuth = false;
+  toggleSideDrawer = false;
 }
 
 decorate(AuthStore, {
@@ -17,6 +18,7 @@ decorate(AuthStore, {
   token: observable,
   tokenExpiration: observable,
   isAuth: observable,
+  toggleSideDrawer: observable,
 });
 
 export const AuthStoreContext = createContext(new AuthStore());

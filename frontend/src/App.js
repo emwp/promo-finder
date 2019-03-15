@@ -7,12 +7,14 @@ import Login from '../src/containers/Auth/Login';
 import Register from '../src/containers/Auth/Register';
 import { observer } from 'mobx-react-lite';
 import { AuthStoreContext } from './stores/AuthStore';
+import SideDrawer from './components/Navigation/SideDrawer/SideDrawer';
 
 const App = observer(() => {
   const authStore = useContext(AuthStoreContext);
   return (
     <Router>
       <React.Fragment>
+        {authStore.toggleSideDrawer ? <SideDrawer /> : null}
         <Navbar />
         <main className="main-content">
           <Switch>

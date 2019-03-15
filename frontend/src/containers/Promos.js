@@ -72,7 +72,9 @@ const Promos = observer(() => {
       {promoStore.creatingPromo === true ? (
         <Modal setCreating={setCreatingPromo} fetchPromos={fetchPromos} />
       ) : null}
-      {promoStore.creatingPromo || promoStore.showDetails === true ? <Backdrop /> : null}
+      {promoStore.creatingPromo || promoStore.showDetails || authStore.toggleSideDrawer === true ? (
+        <Backdrop />
+      ) : null}
 
       {promoStore.loading ? (
         <Spinner />

@@ -32,6 +32,7 @@ const NavWrapper = styled.nav`
   color: #3d3f42;
   align-items: center;
   justify-content: space-around;
+  z-index: 200;
 
   @media (max-width: 768px) {
     .nav_logo {

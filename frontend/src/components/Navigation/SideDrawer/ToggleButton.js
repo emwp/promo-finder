@@ -1,15 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { observer } from 'mobx-react-lite';
+import { AuthStoreContext } from '../../../stores/AuthStore';
 
-const ToggleButton = () => {
+const ToggleButton = observer(() => {
+  const authStore = useContext(AuthStoreContext);
+
+  const setDisplaySideDrawer = () => {
+    authStore.toggleSideDrawer = !authStore.toggleSideDrawer;
+  };
+
   return (
-    <ToggleBtn>
+    <ToggleBtn onClick={setDisplaySideDrawer}>
       <ToggleBtnLine />
       <ToggleBtnLine />
       <ToggleBtnLine />
     </ToggleBtn>
   );
-};
+});
 
 export default ToggleButton;
 
