@@ -1,24 +1,34 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { observer } from 'mobx-react-lite';
+import { AuthStoreContext } from '../../../stores/AuthStore';
 
-const SideDrawer = props => {
+const SideDrawer = observer(props => {
+  const authStore = useContext(AuthStoreContext);
+
+  const closeSideDrawer = () => {
+    if (authStore.toggleSideDrawer) {
+      authStore.toggleSideDrawer = false;
+    }
+  };
+
   return (
     <WrapperSideDrawer show={props.show}>
       <ul>
-        <NavLink to="/" exact>
+        <NavLink to="/" exact onClick={closeSideDrawer}>
           Home
         </NavLink>
-        <NavLink to="/login" exact>
+        <NavLink to="/login" exact onClick={closeSideDrawer}>
           Login
         </NavLink>
-        <NavLink to="/register" exact>
+        <NavLink to="/register" exact onClick={closeSideDrawer}>
           Register
         </NavLink>
       </ul>
     </WrapperSideDrawer>
   );
-};
+});
 
 export default SideDrawer;
 
