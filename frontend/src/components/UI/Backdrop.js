@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Backdrop = () => {
-  return <BackdropWrapper />;
+const Backdrop = props => {
+  return <BackdropWrapper onClick={props.click} />;
 };
 
 export default Backdrop;

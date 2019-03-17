@@ -12,10 +12,15 @@ import SideDrawer from './components/Navigation/SideDrawer/SideDrawer';
 
 const App = observer(() => {
   const authStore = useContext(AuthStoreContext);
+
+  const backdropClickHandler = () => {
+    authStore.toggleSideDrawer = false;
+  };
+
   return (
     <Router>
       <React.Fragment>
-        {authStore.toggleSideDrawer ? <Backdrop /> : null}
+        {authStore.toggleSideDrawer ? <Backdrop click={backdropClickHandler} /> : null}
         {authStore.toggleSideDrawer ? <SideDrawer /> : null}
         <Navbar />
         <main className="main-content">
