@@ -2,9 +2,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-const SideDrawer = () => {
+const SideDrawer = props => {
   return (
-    <WrapperSideDrawer>
+    <WrapperSideDrawer show={props.show}>
       <ul>
         <NavLink to="/" exact>
           Home
@@ -22,7 +22,7 @@ const SideDrawer = () => {
 
 export default SideDrawer;
 
-const WrapperSideDrawer = styled.nav`
+const WrapperSideDrawer = styled.div`
   height: 100vh;
   background: white;
   box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
@@ -31,6 +31,8 @@ const WrapperSideDrawer = styled.nav`
   top: 0;
   left: 0;
   z-index: 150;
+  transform: translateX(${props => (props.show ? '0' : '-100%')});
+  transition: transform 0.5s ease;
 
   ul {
     list-style: none;

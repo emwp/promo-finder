@@ -21,7 +21,7 @@ const App = observer(() => {
     <Router>
       <React.Fragment>
         {authStore.toggleSideDrawer ? <Backdrop click={backdropClickHandler} /> : null}
-        {authStore.toggleSideDrawer ? <SideDrawer /> : null}
+        {authStore.toggleSideDrawer ? <SideDrawer show={authStore.toggleSideDrawer} /> : null}
         <Navbar />
         <main className="main-content">
           <Switch>
