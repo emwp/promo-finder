@@ -25,7 +25,7 @@ export default SideDrawer;
 const WrapperSideDrawer = styled.nav`
   height: 100vh;
   background: white;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
   width: 60vw;
   position: fixed;
   top: 0;
