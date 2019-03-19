@@ -19,12 +19,16 @@ const SideDrawer = observer(props => {
         <NavLink to="/" exact onClick={closeSideDrawer}>
           Home
         </NavLink>
-        <NavLink to="/login" exact onClick={closeSideDrawer}>
-          Login
-        </NavLink>
-        <NavLink to="/register" exact onClick={closeSideDrawer}>
-          Register
-        </NavLink>
+        {!authStore.token ? (
+          <NavLink to="/login" exact onClick={closeSideDrawer}>
+            Login
+          </NavLink>
+        ) : null}
+        {!authStore.token ? (
+          <NavLink to="/register" exact onClick={closeSideDrawer}>
+            Register
+          </NavLink>
+        ) : null}
       </ul>
     </WrapperSideDrawer>
   );
