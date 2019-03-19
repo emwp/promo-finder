@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import Promos from './containers/Promos';
-import Navbar from './components/Navigation/Navbar';
+import Navbar from './components/Navigation/Navbar/Navbar';
 import Backdrop from './components/UI/Backdrop';
 import Login from '../src/containers/Auth/Login';
 import Register from '../src/containers/Auth/Register';

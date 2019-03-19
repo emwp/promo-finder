@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { NavLink, withRouter, Link } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
-import { AuthStoreContext } from '../../stores/AuthStore';
+import { AuthStoreContext } from '../../../stores/AuthStore';
 
 const NavbarLinks = withRouter(
   observer(() => {
