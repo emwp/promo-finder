@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import styled from 'styled-components';
 import Promos from './containers/Promos';
 import Navbar from './components/Navigation/Navbar';
 import Backdrop from './components/UI/Backdrop';
-import './App.css';
 import Login from '../src/containers/Auth/Login';
 import Register from '../src/containers/Auth/Register';
 import { observer } from 'mobx-react-lite';
@@ -25,17 +25,21 @@ const App = observer(() => {
         {authStore.toggleSideDrawer ? <Backdrop click={backdropClickHandler} /> : null}
         {authStore.toggleSideDrawer ? <SideDrawer show={authStore.toggleSideDrawer} /> : null}
         <Navbar />
-        <main className="main-content">
+        <MainContent>
           <Switch>
             {authStore.token && <Redirect from="/login" to="/" exact />}
             <Route exact path="/" component={Promos} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
           </Switch>
-        </main>
+        </MainContent>
       </React.Fragment>
     </Router>
   );
 });
 
 export default App;
+
+const MainContent = styled.div`
+  margin: 4rem 2rem;
+`;
