@@ -9,6 +9,7 @@ import Register from '../src/containers/Auth/Register';
 import { observer } from 'mobx-react-lite';
 import { AuthStoreContext } from './stores/AuthStore';
 import SideDrawer from './components/Navigation/SideDrawer/SideDrawer';
+import GlobalStyle from './global.style';
 
 const App = observer(() => {
   const authStore = useContext(AuthStoreContext);
@@ -20,6 +21,7 @@ const App = observer(() => {
   return (
     <Router>
       <React.Fragment>
+        <GlobalStyle />
         {authStore.toggleSideDrawer ? <Backdrop click={backdropClickHandler} /> : null}
         {authStore.toggleSideDrawer ? <SideDrawer show={authStore.toggleSideDrawer} /> : null}
         <Navbar />
