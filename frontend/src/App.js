@@ -6,6 +6,7 @@ import Navbar from './components/Navigation/Navbar/Navbar';
 import Backdrop from './components/UI/Backdrop';
 import Login from '../src/containers/Auth/Login';
 import Register from '../src/containers/Auth/Register';
+import About from './containers/About';
 import { observer } from 'mobx-react-lite';
 import { AuthStoreContext } from './stores/AuthStore';
 import SideDrawer from './components/Navigation/SideDrawer/SideDrawer';
@@ -29,6 +30,7 @@ const App = observer(() => {
           <Switch>
             {authStore.token && <Redirect from="/login" to="/" exact />}
             <Route exact path="/" component={Promos} />
+            <Route exact path="/about" component={About} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
           </Switch>
