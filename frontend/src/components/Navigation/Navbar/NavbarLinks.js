@@ -24,6 +24,11 @@ const NavbarLinks = withRouter(
             Home
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/about" exact className="nav-link">
+            About
+          </NavLink>
+        </li>
         {authStore.token === '' && authStore.userId === '' && authStore.tokenExpiration === '' ? (
           <li>
             <NavLink to="/login" exact className="nav-link">
