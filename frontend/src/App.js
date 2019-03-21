@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { observer } from 'mobx-react-lite';
 import Promos from './containers/Promos';
 import Navbar from './components/Navigation/Navbar/Navbar';
+import Footer from './components/UI/Footer';
 import Backdrop from './components/UI/Backdrop';
 import Login from './containers/Auth/Login';
 import Register from './containers/Auth/Register';
@@ -34,6 +35,7 @@ const App = observer(() => {
             <Route exact path="/login" component={Login} />
             <Route exact path="/register" component={Register} />
           </Switch>
+          <Footer />
         </MainContent>
       </React.Fragment>
     </Router>
