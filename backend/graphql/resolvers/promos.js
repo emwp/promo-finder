@@ -47,4 +47,11 @@ module.exports = {
       throw err;
     }
   },
+
+  deletePromo: async (arg, req) => {
+    if (!req.isAuth) {
+      throw new Error('Unauthenticated!');
+    }
+    return await Promo.findByIdAndRemove(arg.id);
+  },
 };

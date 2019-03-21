@@ -48,6 +48,7 @@ type RootQuery {
 type RootMutation {
   createPromo(promoInput: PromoInput): Promo
   createUser(userInput: UserInput): User
+  deletePromo(id:String!): Promo
 }
 
 schema {
