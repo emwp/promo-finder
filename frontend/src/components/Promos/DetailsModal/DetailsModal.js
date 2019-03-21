@@ -1,8 +1,46 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import { AuthStoreContext } from '../../../stores/AuthStore';
+import { PromoStoreContext } from '../../../stores/PromoStore';
+import { observer } from 'mobx-react-lite';
 
-const DetailsModal = props => {
+const DetailsModal = observer(props => {
+  const authStore = useContext(AuthStoreContext);
+  const promoStore = useContext(PromoStoreContext);
+
   const selectedPromo = props.promos.find(promo => promo._id === props.selected);
+
+  const deleteHandler = () => {
+    promoStore.loading = true;
+    if (authStore.userId === selectedPromo.creator._id) {
+      axios
+        .post('http://localhost:8000/graphql', {
+          query: `
+      mutation {
+        deletePromo(id: "${selectedPromo._id}") {
+          _id
+        }
+      }
+    `,
+        })
+        .then(() => {
+          let updatedPromos = [...promoStore.listedPromos];
+
+          updatedPromos = updatedPromos.filter(promo => promo._id !== selectedPromo._id);
+          promoStore.listedPromos = updatedPromos;
+          promoStore.showDetails = false;
+          promoStore.loading = false;
+          return promoStore.listedPromos;
+        })
+        .catch(err => {
+          console.log(err);
+          promoStore.loading = false;
+        });
+    } else {
+      throw new Error('Unauthorized');
+    }
+  };
 
   return (
     <ModalWrapper>
@@ -20,15 +58,19 @@ const DetailsModal = props => {
         <p>{selectedPromo.description}</p>
       </section>
       <section className="btn">
-        <button>Edit</button>
-        <button>Delete</button>
+        {authStore.userId === selectedPromo.creator._id ? <button>Edit</button> : null}
+        {authStore.userId === selectedPromo.creator._id ? (
+          <button type="button" onClick={deleteHandler}>
+            Delete
+          </button>
+        ) : null}
         <button type="button" onClick={props.setDetails}>
           Close
         </button>
       </section>
     </ModalWrapper>
   );
-};
+});
 
 export default DetailsModal;
 
