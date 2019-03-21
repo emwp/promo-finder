@@ -6,7 +6,7 @@ import LinkedIn from '../../img/in.svg';
 const Footer = () => {
   return (
     <FooterWrapper>
-      <p>Connect with me</p>
+      <p>Contact Info</p>
       <div className="social_links">
         <a href="https://github.com/emwp" target="_blank" rel="noopener noreferrer">
           <img src={GitHub} alt="GitHub" />

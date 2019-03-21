@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import Logo from '../img/github.svg';
 
 const About = () => {
   return (
@@ -14,9 +13,6 @@ const About = () => {
         PromoFinder was developed with the intention of helping people share their findings with the
         world.
       </p>
-      <a href="https://github.com/emwp" target="_blank" rel="noopener noreferrer">
-        <img src={Logo} alt="GitHub" />
-      </a>
     </AboutWrapper>
   );
 };
@@ -42,16 +38,5 @@ const AboutWrapper = styled.div`
     color: white;
     text-align: justify;
     margin: 0.5rem 0;
-  }
-
-  a {
-    text-align: center;
-    cursor: auto;
-    margin-top: 2rem;
-  }
-
-  img {
-    width: 2rem;
-    cursor: pointer;
   }
 `;
