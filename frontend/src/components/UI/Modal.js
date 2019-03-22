@@ -55,9 +55,11 @@ const Modal = observer(props => {
         {
           query: `
         mutation {
-          createPromo(promoInput: {title: "${promoStore.title}", link: "${promoStore.link}", store: "${promoStore.store}", description: "${
-            promoStore.description
-          }", price: ${promoStore.price}, date: "${promoStore.date}"}) {
+          createPromo(promoInput: {title: "${promoStore.title}", link: "${
+            promoStore.link
+          }", store: "${promoStore.store}", description: "${promoStore.description}", price: ${
+            promoStore.price
+          }, date: "${promoStore.date}"}) {
             _id
             title
             link
@@ -75,7 +77,7 @@ const Modal = observer(props => {
         },
         {
           headers: {
-            'Authorization': 'Bearer ' + getToken,
+            Authorization: 'Bearer ' + getToken,
             'Content-Type': 'application/json',
           },
         },
@@ -93,9 +95,9 @@ const Modal = observer(props => {
           price: res.data.data.createPromo.price,
           date: res.data.data.createPromo.date,
           creator: {
-            _id: authStore.userId
-          }
-        })
+            _id: authStore.userId,
+          },
+        });
         promoStore.listedPromos = promos;
       })
       .then(endNewPromo())
@@ -111,30 +113,37 @@ const Modal = observer(props => {
           <input
             type="text"
             placeholder="Title"
+            required={true}
+            minLength="3"
             value={promoStore.title}
             onChange={titleChangeHandler}
           />
           <input
-            type="text"
+            type="URL"
             placeholder="Promo URL"
+            required={true}
             value={promoStore.link}
             onChange={linkChangeHandler}
           />
           <input
             type="text"
             placeholder="Store"
+            minLength="3"
+            required={true}
             value={promoStore.store}
             onChange={storeChangeHandler}
           />
           <input
             type="number"
             placeholder="Price"
+            required={true}
             value={promoStore.price}
             onChange={priceChangeHandler}
           />
           <textarea
             rows="4"
             type="text"
+            required={true}
             placeholder="Description"
             value={promoStore.description}
             onChange={descriptionChangeHandler}
