@@ -58,6 +58,7 @@ const ItemWrapper = styled.li`
   .promo_owner {
     text-align: center;
     text-decoration: underline;
+    margin-bottom: 0;
   }
 
   button {
