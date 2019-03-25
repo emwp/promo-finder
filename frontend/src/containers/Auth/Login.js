@@ -52,6 +52,7 @@ const Login = observer(() => {
         <input
           type="email"
           placeholder="Email"
+          required={true}
           value={authStore.email}
           onChange={emailChangeHandler}
         />
@@ -60,6 +61,7 @@ const Login = observer(() => {
         <input
           type="password"
           placeholder="Password"
+          required={true}
           value={authStore.password}
           onChange={passChangeHandler}
         />

@@ -49,7 +49,6 @@ const Register = observer(() => {
       </div>
       <div className="form-item">
         <input
-          required
           type="email"
           placeholder="Email"
           required={true}
@@ -59,7 +58,6 @@ const Register = observer(() => {
       </div>
       <div className="form-item">
         <input
-          required
           type="password"
           required={true}
           value={authStore.password}
