@@ -54,4 +54,18 @@ module.exports = {
     }
     return await Promo.findByIdAndRemove(arg.id);
   },
+
+  editPromo: async (arg, req) => {
+    // if (!req.isAuth) {
+    //   throw new Error('Unauthenticated!');
+    // }
+    return await Promo.findByIdAndUpdate(arg.id, {
+      title: arg.title,
+      link: arg.link,
+      store: arg.store,
+      description: arg.description,
+      price: arg.price,
+      date: arg.date,
+    });
+  },
 };
