@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "8.12.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "MONGO_USER=everton MONGO_PASSWORD=nTJYNcUfWJRRXF66 MONGO_DB=promo-finder node app.js",
+    "dev": "nodemon app.js"
   },
   "keywords": [],
   "author": "",

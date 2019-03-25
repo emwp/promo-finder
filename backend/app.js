@@ -42,6 +42,6 @@ mongoose
     }@cluster0-j9chw.mongodb.net/${process.env.MONGO_DB}?retryWrites=true`,
   )
   .then(() => {
-    app.listen(8000);
+    app.listen(process.env.PORT || 8000);
   })
   .catch(err => console.log(err));
