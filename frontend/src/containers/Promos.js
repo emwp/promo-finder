@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import Modal from '../components/UI/Modal';
+import NewPromoModal from '../components/Promos/NewPromoModal/NewPromoModal';
 import Backdrop from '../components/UI/Backdrop';
 import Spinner from '../components/UI/Spinner';
 import axios from 'axios';
@@ -70,7 +70,7 @@ const Promos = observer(() => {
         {authStore.isAuth ? <button onClick={setCreatingPromo}>Add New</button> : null}
       </HeaderWrapper>
       {promoStore.creatingPromo === true ? (
-        <Modal setCreating={setCreatingPromo} fetchPromos={fetchPromos} />
+        <NewPromoModal setCreating={setCreatingPromo} fetchPromos={fetchPromos} />
       ) : null}
       {promoStore.creatingPromo || promoStore.showDetails === true ? <Backdrop /> : null}
 

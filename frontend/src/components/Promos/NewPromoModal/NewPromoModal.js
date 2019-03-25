@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import { observer } from 'mobx-react-lite';
-import { PromoStoreContext } from '../../stores/PromoStore';
-import { AuthStoreContext } from '../../stores/AuthStore';
+import { PromoStoreContext } from '../../../stores/PromoStore';
+import { AuthStoreContext } from '../../../stores/AuthStore';
 
 const Modal = observer(props => {
   const promoStore = useContext(PromoStoreContext);
