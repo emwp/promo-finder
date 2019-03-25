@@ -40,6 +40,15 @@ input PromoInput {
   date: String!
 }
 
+input PromoEdit {
+  id: ID!
+  title: String!
+  link: String!
+  store: String!
+  description: String!
+  price: Float!
+}
+
 type RootQuery {
   promos: [Promo!]!
   login(email: String!, password: String!): AuthData!
@@ -49,7 +58,7 @@ type RootMutation {
   createPromo(promoInput: PromoInput): Promo
   createUser(userInput: UserInput): User
   deletePromo(id:String!): Promo
-  editPromo(id:String!): Promo
+  editPromo(promoEdit: PromoEdit): Promo
 }
 
 schema {

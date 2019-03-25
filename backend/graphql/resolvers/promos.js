@@ -59,13 +59,12 @@ module.exports = {
     // if (!req.isAuth) {
     //   throw new Error('Unauthenticated!');
     // }
-    return await Promo.findByIdAndUpdate(arg.id, {
-      title: arg.title,
-      link: arg.link,
-      store: arg.store,
-      description: arg.description,
-      price: arg.price,
-      date: arg.date,
+    return await Promo.findByIdAndUpdate(arg.promoEdit.id, {
+      title: arg.promoEdit.title,
+      link: arg.promoEdit.link,
+      store: arg.promoEdit.store,
+      description: arg.promoEdit.description,
+      price: arg.promoEdit.price,
     });
   },
 };
