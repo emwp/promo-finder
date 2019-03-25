@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 import { PromoStoreContext } from '../../../stores/PromoStore';
 import { observer } from 'mobx-react-lite';
 
@@ -26,10 +27,85 @@ const EditPromo = observer(props => {
     promoStore.description = event.target.value;
   };
 
+  const updateHandler = event => {
+    event.preventDefault();
+    promoStore.loading = true;
+    const getToken = props.token;
+
+    if (promoStore.title === '') {
+      promoStore.title = props.title;
+    }
+    if (promoStore.link === '') {
+      promoStore.link = props.link;
+    }
+    if (promoStore.store === '') {
+      promoStore.store = props.store;
+    }
+    if (promoStore.price === '') {
+      promoStore.price = props.price;
+    }
+    if (promoStore.description === '') {
+      promoStore.description = props.desc;
+    }
+
+    axios
+      .post(
+        'http://localhost:8000/graphql',
+        {
+          query: `
+            mutation {
+              editPromo(editInput: {id: "${props.id}", title: "${promoStore.title}", link: "${
+            promoStore.link
+          }", store: "${promoStore.store}", description: "${promoStore.description}", price: ${
+            promoStore.price
+          } }) {
+                link
+              }
+             }
+           `,
+        },
+        {
+          headers: {
+            Authorization: 'Bearer ' + getToken,
+            'Content-Type': 'application/json',
+          },
+        },
+      )
+      .then(res => {
+        console.log(res);
+        promoStore.loading = false;
+      })
+      // .then(res => {
+      //   // console.log(res.data.data.createPromo);
+      //   const promos = [...promoStore.listedPromos];
+
+      //   promos.push({
+      //     _id: res.data.data.createPromo._id,
+      //     title: res.data.data.createPromo.title,
+      //     link: res.data.data.createPromo.link,
+      //     store: res.data.data.createPromo.store,
+      //     description: res.data.data.createPromo.description,
+      //     price: res.data.data.createPromo.price,
+      //     date: res.data.data.createPromo.date,
+      //     creator: {
+      //       _id: authStore.userId,
+      //     },
+      //   });
+      //   promoStore.listedPromos = promos;
+      //   promoStore.loading = false;
+      // })
+      // .then(endNewPromo())
+      // // .then(props.fetchPromos)
+      .catch(err => {
+        console.log(err);
+        promoStore.loading = false;
+      });
+  };
+
   return (
     <ModalWrapper>
       <header>Edit Promo</header>
-      <form>
+      <form onSubmit={updateHandler}>
         <section>
           <input
             type="text"
