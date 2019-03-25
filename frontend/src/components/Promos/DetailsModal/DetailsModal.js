@@ -13,17 +13,27 @@ const DetailsModal = observer(props => {
 
   const deleteHandler = () => {
     promoStore.loading = true;
+    const getToken = authStore.token;
     if (authStore.userId === selectedPromo.creator._id) {
       axios
-        .post('http://localhost:8000/graphql', {
-          query: `
-      mutation {
-        deletePromo(id: "${selectedPromo._id}") {
-          _id
-        }
-      }
-    `,
-        })
+        .post(
+          'http://localhost:8000/graphql',
+          {
+            query: `
+            mutation {
+              deletePromo(id: "${selectedPromo._id}") {
+               _id
+               }
+             }
+           `,
+          },
+          {
+            headers: {
+              Authorization: 'Bearer ' + getToken,
+              'Content-Type': 'application/json',
+            },
+          },
+        )
         .then(() => {
           let updatedPromos = [...promoStore.listedPromos];
 
