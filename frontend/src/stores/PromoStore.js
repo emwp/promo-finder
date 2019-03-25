@@ -12,6 +12,7 @@ class PromoStore {
   listedPromos = [];
   loading = false;
   showDetails = false;
+  editingPromo = false;
   promoDetail = '';
 }
 
@@ -26,6 +27,7 @@ decorate(PromoStore, {
   listedPromos: observable,
   loading: observable,
   showDetails: observable,
+  editingPromo: observable,
   promoDetail: observable,
 });
 

@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import EditPromo from './EditPromo';
 import { AuthStoreContext } from '../../../stores/AuthStore';
 import { PromoStoreContext } from '../../../stores/PromoStore';
 import { observer } from 'mobx-react-lite';
@@ -10,6 +11,10 @@ const DetailsModal = observer(props => {
   const promoStore = useContext(PromoStoreContext);
 
   const selectedPromo = props.promos.find(promo => promo._id === props.selected);
+
+  const editHandler = () => {
+    promoStore.editingPromo = !promoStore.editingPromo;
+  };
 
   const deleteHandler = () => {
     promoStore.loading = true;
@@ -53,32 +58,37 @@ const DetailsModal = observer(props => {
   };
 
   return (
-    <ModalWrapper>
-      <header>
-        <a target="_blank" rel="noopener noreferrer" href={selectedPromo.link}>
-          {selectedPromo.title}
-        </a>
-      </header>
-      <section className="promo_details">
-        <p>Price: ${selectedPromo.price.toFixed(2)}</p>
-        <p>Date Added: {new Date(selectedPromo.date).toLocaleDateString('pt-BR')}</p>
-        <p>Store: {selectedPromo.store}</p>
-      </section>
-      <section className="promo_description">
-        <p>{selectedPromo.description}</p>
-      </section>
-      <section className="btn">
-        {authStore.userId === selectedPromo.creator._id ? <button>Edit</button> : null}
-        {authStore.userId === selectedPromo.creator._id ? (
-          <button type="button" onClick={deleteHandler}>
-            Delete
+    <React.Fragment>
+      <ModalWrapper>
+        <header>
+          <a target="_blank" rel="noopener noreferrer" href={selectedPromo.link}>
+            {selectedPromo.title}
+          </a>
+        </header>
+        <section className="promo_details">
+          <p>Price: ${selectedPromo.price.toFixed(2)}</p>
+          <p>Date Added: {new Date(selectedPromo.date).toLocaleDateString('pt-BR')}</p>
+          <p>Store: {selectedPromo.store}</p>
+        </section>
+        <section className="promo_description">
+          <p>{selectedPromo.description}</p>
+        </section>
+        <section className="btn">
+          {authStore.userId === selectedPromo.creator._id ? (
+            <button onClick={editHandler}>Edit</button>
+          ) : null}
+          {authStore.userId === selectedPromo.creator._id ? (
+            <button type="button" onClick={deleteHandler}>
+              Delete
+            </button>
+          ) : null}
+          <button type="button" onClick={props.setDetails}>
+            Close
           </button>
-        ) : null}
-        <button type="button" onClick={props.setDetails}>
-          Close
-        </button>
-      </section>
-    </ModalWrapper>
+        </section>
+      </ModalWrapper>
+      {promoStore.editingPromo && <EditPromo />}
+    </React.Fragment>
   );
 });
 
