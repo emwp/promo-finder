@@ -52,6 +52,7 @@ const Register = observer(() => {
           required
           type="email"
           placeholder="Email"
+          required={true}
           value={authStore.email}
           onChange={emailChangeHandler}
         />
@@ -60,6 +61,7 @@ const Register = observer(() => {
         <input
           required
           type="password"
+          required={true}
           value={authStore.password}
           onChange={passChangeHandler}
           placeholder="Password"
