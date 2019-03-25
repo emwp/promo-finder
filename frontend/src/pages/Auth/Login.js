@@ -21,7 +21,7 @@ const Login = observer(() => {
       return;
     }
     axios
-      .post('http://localhost:8000/graphql', {
+      .post('https://promo-finder.herokuapp.com/graphql', {
         query: `
         query {
           login(email: "${authStore.email}", password: "${authStore.password}") {

@@ -61,7 +61,7 @@ const EditPromo = observer(props => {
 
     axios
       .post(
-        'http://localhost:8000/graphql',
+        'https://promo-finder.herokuapp.com/graphql',
         {
           query: `
             mutation {

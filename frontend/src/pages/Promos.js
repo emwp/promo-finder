@@ -33,7 +33,7 @@ const Promos = observer(() => {
     promoStore.loading = true;
 
     axios
-      .post('http://localhost:8000/graphql', {
+      .post('https://promo-finder.herokuapp.com/graphql', {
         query: `
         query {
           promos {

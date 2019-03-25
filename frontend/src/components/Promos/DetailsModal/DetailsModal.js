@@ -22,7 +22,7 @@ const DetailsModal = observer(props => {
     if (authStore.userId === selectedPromo.creator._id) {
       axios
         .post(
-          'http://localhost:8000/graphql',
+          'https://promo-finder.herokuapp.com/graphql',
           {
             query: `
             mutation {
