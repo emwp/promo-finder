@@ -27,6 +27,17 @@ const EditPromo = observer(props => {
     promoStore.description = event.target.value;
   };
 
+  const endEdit = () => {
+    promoStore.editingPromo = !promoStore.editingPromo;
+
+    promoStore.title = '';
+    promoStore.link = '';
+    promoStore.description = '';
+    promoStore.price = '';
+    promoStore.store = '';
+    promoStore.date = '';
+  };
+
   const updateHandler = event => {
     event.preventDefault();
     promoStore.loading = true;
@@ -71,9 +82,27 @@ const EditPromo = observer(props => {
           },
         },
       )
-      .then(res => {
-        console.log(res);
+      .then(() => {
+        let updatedPromos = [...promoStore.listedPromos];
+
+        updatedPromos = updatedPromos.filter(promo => promo._id !== props.id);
+
+        updatedPromos.push({
+          _id: props.id,
+          title: promoStore.title,
+          link: promoStore.link,
+          store: promoStore.store,
+          description: promoStore.description,
+          price: promoStore.price,
+          date: props.date,
+          creator: props.creator,
+        });
+        promoStore.listedPromos = updatedPromos;
+
+        promoStore.showDetails = false;
+        endEdit();
         promoStore.loading = false;
+        return promoStore.listedPromos;
       })
       // .then(res => {
       //   // console.log(res.data.data.createPromo);

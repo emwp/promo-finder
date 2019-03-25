@@ -95,6 +95,8 @@ const DetailsModal = observer(props => {
           store={selectedPromo.store}
           price={selectedPromo.price}
           desc={selectedPromo.description}
+          creator={selectedPromo.creator}
+          date={selectedPromo.date}
           token={authStore.token}
         />
       )}
