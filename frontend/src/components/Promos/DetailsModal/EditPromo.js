@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { PromoStoreContext } from '../../../stores/PromoStore';
 import { observer } from 'mobx-react-lite';
 
-const EditPromo = observer(() => {
+const EditPromo = observer(props => {
   const promoStore = useContext(PromoStoreContext);
 
   const closeEditMode = () => {
@@ -36,14 +36,14 @@ const EditPromo = observer(() => {
             placeholder="Title"
             required={true}
             minLength="3"
-            value={promoStore.title}
+            defaultValue={props.title}
             onChange={titleChangeHandler}
           />
           <input
             type="URL"
             placeholder="Promo URL"
             required={true}
-            value={promoStore.link}
+            defaultValue={props.link}
             onChange={linkChangeHandler}
           />
           <input
@@ -51,14 +51,14 @@ const EditPromo = observer(() => {
             placeholder="Store"
             minLength="3"
             required={true}
-            value={promoStore.store}
+            defaultValue={props.store}
             onChange={storeChangeHandler}
           />
           <input
             type="number"
             placeholder="Price"
             required={true}
-            value={promoStore.price}
+            defaultValue={props.price}
             onChange={priceChangeHandler}
           />
           <textarea
@@ -66,7 +66,7 @@ const EditPromo = observer(() => {
             type="text"
             required={true}
             placeholder="Description"
-            value={promoStore.description}
+            defaultValue={props.desc}
             onChange={descriptionChangeHandler}
           />
         </section>

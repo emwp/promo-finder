@@ -87,7 +87,15 @@ const DetailsModal = observer(props => {
           </button>
         </section>
       </ModalWrapper>
-      {promoStore.editingPromo && <EditPromo />}
+      {promoStore.editingPromo && (
+        <EditPromo
+          title={selectedPromo.title}
+          link={selectedPromo.link}
+          store={selectedPromo.store}
+          price={selectedPromo.price}
+          desc={selectedPromo.description}
+        />
+      )}
     </React.Fragment>
   );
 });
