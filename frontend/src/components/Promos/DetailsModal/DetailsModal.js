@@ -89,11 +89,13 @@ const DetailsModal = observer(props => {
       </ModalWrapper>
       {promoStore.editingPromo && (
         <EditPromo
+          id={selectedPromo._id}
           title={selectedPromo.title}
           link={selectedPromo.link}
           store={selectedPromo.store}
           price={selectedPromo.price}
           desc={selectedPromo.description}
+          token={authStore.token}
         />
       )}
     </React.Fragment>
