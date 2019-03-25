@@ -49,6 +49,7 @@ type RootMutation {
   createPromo(promoInput: PromoInput): Promo
   createUser(userInput: UserInput): User
   deletePromo(id:String!): Promo
+  editPromo(id:String!): Promo
 }
 
 schema {
