@@ -37,6 +37,7 @@ const Modal = observer(props => {
 
   const submitHandler = event => {
     event.preventDefault();
+    promoStore.loading = true;
     const getToken = authStore.token;
 
     if (
@@ -99,10 +100,14 @@ const Modal = observer(props => {
           },
         });
         promoStore.listedPromos = promos;
+        promoStore.loading = false;
       })
       .then(endNewPromo())
       // .then(props.fetchPromos)
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err);
+        promoStore.loading = false;
+      });
   };
 
   return (
