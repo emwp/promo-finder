@@ -56,15 +56,15 @@ module.exports = {
   },
 
   editPromo: async (arg, req) => {
-    // if (!req.isAuth) {
-    //   throw new Error('Unauthenticated!');
-    // }
-    return await Promo.findByIdAndUpdate(arg.promoEdit.id, {
-      title: arg.promoEdit.title,
-      link: arg.promoEdit.link,
-      store: arg.promoEdit.store,
-      description: arg.promoEdit.description,
-      price: arg.promoEdit.price,
+    if (!req.isAuth) {
+      throw new Error('Unauthenticated!');
+    }
+    return await Promo.findByIdAndUpdate(arg.editInput.id, {
+      title: arg.editInput.title,
+      link: arg.editInput.link,
+      store: arg.editInput.store,
+      description: arg.editInput.description,
+      price: arg.editInput.price,
     });
   },
 };

@@ -40,7 +40,7 @@ input PromoInput {
   date: String!
 }
 
-input PromoEdit {
+input EditInput {
   id: ID!
   title: String!
   link: String!
@@ -58,7 +58,7 @@ type RootMutation {
   createPromo(promoInput: PromoInput): Promo
   createUser(userInput: UserInput): User
   deletePromo(id:String!): Promo
-  editPromo(promoEdit: PromoEdit): Promo
+  editPromo(editInput: EditInput): Promo
 }
 
 schema {
