@@ -43,7 +43,7 @@ const NavbarLinks = withRouter(
             </NavLink>
           </li>
         ) : null}
-        {authStore.token !== '' && authStore.userId !== '' && authStore.tokenExpiration !== '' ? (
+        {authStore.token !== '' ? (
           <li>
             <Link onClick={setLogout} to="/" className="nav-link">
               Logout

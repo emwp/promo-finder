@@ -36,6 +36,9 @@ const Register = observer(() => {
         authStore.tokenExpiration = res.data.data.login.tokenExpiration;
         authStore.email = '';
         authStore.password = '';
+        localStorage.setItem('token', JSON.stringify(authStore.token));
+        localStorage.setItem('tokenExpiration', JSON.stringify(authStore.tokenExpiration));
+        localStorage.setItem('isAuth', JSON.stringify(authStore.isAuth));
       })
       .catch(err => console.log(err));
   };

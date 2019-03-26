@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 import { observer } from 'mobx-react-lite';
@@ -19,6 +19,14 @@ const App = observer(() => {
   const backdropClickHandler = () => {
     authStore.toggleSideDrawer = false;
   };
+
+  useEffect(() => {
+    const token = JSON.parse(localStorage.getItem('token'));
+    if (token !== null) {
+      authStore.token = token;
+      authStore.isAuth = true;
+    }
+  }, []);
 
   return (
     <Router>

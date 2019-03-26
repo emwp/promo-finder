@@ -39,6 +39,9 @@ const Login = observer(() => {
         authStore.userId = res.data.data.login.userId;
         authStore.token = res.data.data.login.token;
         authStore.tokenExpiration = res.data.data.login.tokenExpiration;
+        localStorage.setItem('token', JSON.stringify(authStore.token));
+        localStorage.setItem('tokenExpiration', JSON.stringify(authStore.tokenExpiration));
+        localStorage.setItem('isAuth', JSON.stringify(authStore.isAuth));
       })
       .catch(err => console.log(err));
   };
