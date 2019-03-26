@@ -10,14 +10,14 @@ import Login from './pages/Auth/Login';
 import Register from './pages/Auth/Register';
 import About from './pages/About';
 import { AuthStoreContext } from './stores/AuthStore';
-import SideDrawer from './components/Navigation/SideDrawer/SideDrawer';
+import Sidebar from './components/Navigation/Sidebar/Sidebar';
 import GlobalStyle from './global.style';
 
 const App = observer(() => {
   const authStore = useContext(AuthStoreContext);
 
   const backdropClickHandler = () => {
-    authStore.toggleSideDrawer = false;
+    authStore.toggleSidebar = false;
   };
 
   useEffect(() => {
@@ -32,8 +32,8 @@ const App = observer(() => {
     <Router>
       <React.Fragment>
         <GlobalStyle />
-        {authStore.toggleSideDrawer ? <Backdrop click={backdropClickHandler} /> : null}
-        {authStore.toggleSideDrawer ? <SideDrawer show={authStore.toggleSideDrawer} /> : null}
+        {authStore.toggleSidebar ? <Backdrop click={backdropClickHandler} /> : null}
+        {authStore.toggleSidebar ? <Sidebar show={authStore.toggleSidebar} /> : null}
         <Navbar />
         <MainContent>
           <Switch>

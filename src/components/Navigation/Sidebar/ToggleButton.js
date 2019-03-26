@@ -6,12 +6,12 @@ import { AuthStoreContext } from '../../../stores/AuthStore';
 const ToggleButton = observer(() => {
   const authStore = useContext(AuthStoreContext);
 
-  const setDisplaySideDrawer = () => {
-    authStore.toggleSideDrawer = !authStore.toggleSideDrawer;
+  const setDisplaySidebar = () => {
+    authStore.toggleSidebar = !authStore.toggleSidebar;
   };
 
   return (
-    <ToggleBtn onClick={setDisplaySideDrawer}>
+    <ToggleBtn onClick={setDisplaySidebar}>
       <ToggleBtnLine />
       <ToggleBtnLine />
       <ToggleBtnLine />

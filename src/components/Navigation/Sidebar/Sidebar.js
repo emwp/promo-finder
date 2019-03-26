@@ -6,31 +6,31 @@ import { AuthStoreContext } from '../../../stores/AuthStore';
 import GitHub from '../../../img/github.svg';
 import LinkedIn from '../../../img/in.svg';
 
-const SideDrawer = observer(props => {
+const Sidebar = observer(props => {
   const authStore = useContext(AuthStoreContext);
 
-  const closeSideDrawer = () => {
-    if (authStore.toggleSideDrawer) {
-      authStore.toggleSideDrawer = false;
+  const closeSidebar = () => {
+    if (authStore.toggleSidebar) {
+      authStore.toggleSidebar = false;
     }
   };
 
   return (
-    <WrapperSideDrawer show={props.show}>
+    <WrapperSidebar show={props.show}>
       <ul>
-        <NavLink to="/" exact onClick={closeSideDrawer}>
+        <NavLink to="/" exact onClick={closeSidebar}>
           Home
         </NavLink>
-        <NavLink to="/about" exact onClick={closeSideDrawer}>
+        <NavLink to="/about" exact onClick={closeSidebar}>
           About
         </NavLink>
         {!authStore.token ? (
-          <NavLink to="/login" exact onClick={closeSideDrawer}>
+          <NavLink to="/login" exact onClick={closeSidebar}>
             Login
           </NavLink>
         ) : null}
         {!authStore.token ? (
-          <NavLink to="/register" exact onClick={closeSideDrawer}>
+          <NavLink to="/register" exact onClick={closeSidebar}>
             Register
           </NavLink>
         ) : null}
@@ -47,13 +47,13 @@ const SideDrawer = observer(props => {
           <img src={LinkedIn} alt="LinkedIn" />
         </a>
       </div>
-    </WrapperSideDrawer>
+    </WrapperSidebar>
   );
 });
 
-export default SideDrawer;
+export default Sidebar;
 
-const WrapperSideDrawer = styled.div`
+const WrapperSidebar = styled.div`
   height: 100vh;
   background: white;
   box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
