@@ -30,6 +30,7 @@ const App = observer(() => {
         <MainContent>
           <Switch>
             {authStore.token && <Redirect from="/login" to="/" exact />}
+            {authStore.token && <Redirect from="/register" to="/" exact />}
             <Route exact path="/" component={Promos} />
             <Route exact path="/about" component={About} />
             <Route exact path="/login" component={Login} />
