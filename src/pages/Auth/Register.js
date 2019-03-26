@@ -9,11 +9,9 @@ const Register = observer(() => {
 
   const emailChangeHandler = event => {
     authStore.email = event.target.value;
-    // console.log(authStore.email);
   };
   const passChangeHandler = event => {
     authStore.password = event.target.value;
-    // console.log(authStore.password);
   };
 
   const submitHandler = event => {
@@ -33,11 +31,9 @@ const Register = observer(() => {
         }
       `,
       })
-      .then(res => console.log(res.data))
       .then(() => {
         authStore.email = '';
         authStore.password = '';
-        console.log(authStore.email);
       })
       .catch(err => console.log(err));
   };
