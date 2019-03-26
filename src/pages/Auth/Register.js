@@ -14,6 +14,32 @@ const Register = observer(() => {
     authStore.password = event.target.value;
   };
 
+  const autoLogin = () => {
+    axios
+      .post('https://promo-finder.herokuapp.com/graphql', {
+        query: `
+        query {
+          login(email: "${authStore.email}", password: "${authStore.password}") {
+            userId
+            token
+            tokenExpiration
+          }
+        }
+      `,
+      })
+      .then(res => {
+        if (res.data.data.login.token) {
+          authStore.isAuth = true;
+        }
+        authStore.userId = res.data.data.login.userId;
+        authStore.token = res.data.data.login.token;
+        authStore.tokenExpiration = res.data.data.login.tokenExpiration;
+        authStore.email = '';
+        authStore.password = '';
+      })
+      .catch(err => console.log(err));
+  };
+
   const submitHandler = event => {
     const { email, password } = authStore;
     event.preventDefault();
@@ -32,6 +58,7 @@ const Register = observer(() => {
       `,
       })
       .then(() => {
+        autoLogin();
         authStore.email = '';
         authStore.password = '';
       })
