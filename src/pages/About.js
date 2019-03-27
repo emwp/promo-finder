@@ -6,8 +6,7 @@ const About = () => {
     <AboutWrapper>
       <h1>About PromoFinder</h1>
       <p>
-        Help your friends save some money by sharing the best promotions you can find on the
-        internet.
+        Help your friends save some money by sharing the best deals you can find on the internet.
       </p>
       <p>
         PromoFinder was developed with the intention of helping people share their findings with the
