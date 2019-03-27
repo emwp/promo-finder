@@ -1,7 +1,7 @@
 # PromoFinder
-## [Check it out!](https://github.com/emwp)
+## [Check it out!](https://promofinder.netlify.com/)
 
-![](https://thumbs.gfycat.com/GorgeousBoringKentrosaurus-size_restricted.gif)
+![](/src/img/promofinder.gif)
 
 ## Introduction
 Help your friends save some money by sharing the best deals you can find on the internet.
@@ -24,4 +24,3 @@ Help your friends save some money by sharing the best deals you can find on the 
 2. Move to the appropriate directory `cd promo-finder`.<br />
 3. Run `yarn` or `npm install` to install dependencies.<br />
 4. Run `npm start` or `yarn start` to start the development server on `http://localhost:3000`.
-
