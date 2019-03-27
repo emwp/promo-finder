@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { observer } from 'mobx-react-lite';
 import { AuthStoreContext } from '../../../stores/AuthStore';
 import GitHub from '../../../img/github.svg';
-import LinkedIn from '../../../img/in.svg';
 
 const Sidebar = observer(props => {
   const authStore = useContext(AuthStoreContext);
@@ -38,13 +37,6 @@ const Sidebar = observer(props => {
       <div className="social_links">
         <a href="https://github.com/emwp" target="_blank" rel="noopener noreferrer">
           <img src={GitHub} alt="GitHub" />
-        </a>
-        <a
-          href="https://www.linkedin.com/in/everton-pereira-1588a1105/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src={LinkedIn} alt="LinkedIn" />
         </a>
       </div>
     </WrapperSidebar>
@@ -90,7 +82,7 @@ const WrapperSidebar = styled.div`
   }
 
   .social_links img {
-    width: 1.3rem;
+    width: 1.5rem;
     cursor: pointer;
   }
 `;
