@@ -140,6 +140,7 @@ const Modal = observer(props => {
           />
           <input
             type="number"
+            step="any"
             placeholder="Price"
             required={true}
             value={promoStore.price}

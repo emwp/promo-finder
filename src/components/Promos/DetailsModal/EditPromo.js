@@ -140,6 +140,7 @@ const EditPromo = observer(props => {
           />
           <input
             type="number"
+            step="any"
             placeholder="Price"
             required={true}
             defaultValue={props.price}
