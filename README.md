@@ -1,5 +1,5 @@
 # PromoFinder
-## [Check it out!](https://github.com/emwp)
+## [Check it out!](https://promofinder.netlify.com/)
 
 ![](/src/img/promofinder.gif)
 
